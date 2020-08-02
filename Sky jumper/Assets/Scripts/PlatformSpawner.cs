@@ -6,6 +6,7 @@ public class PlatformSpawner : MonoBehaviour
     [SerializeField] GameObject[] platformPrefabs;
     [SerializeField] GameObject[] finalPadPrefabs;
     public GameObject[] platformsOfLevel;
+    public GameObject finalPad;
 
     [SerializeField] float maxScaleX;
     [SerializeField] float minScaleX;
@@ -30,12 +31,7 @@ public class PlatformSpawner : MonoBehaviour
 
         return tempPlatforms;
     }
-
-    private int PlatformRandomizer()
-    {
-        return Random.Range(0, platformPrefabs.Length);
-    }
-
+ 
     private void PlatformInstantiater()
     {
         int zPosDetecter = 0;
@@ -47,6 +43,8 @@ public class PlatformSpawner : MonoBehaviour
             zPosDetecter += DistanceDetecter(platformsOfLevel[i]);
             xPosDetecter *= -1;
         }
+        finalPad = finalPadPrefabs[FinalPadRandomizer()];
+        Instantiate(finalPad, new Vector3(0, 0, zPosDetecter + DistanceDetecter(finalPad)), Quaternion.identity);
     }
 
     private int DistanceDetecter(GameObject platform)
@@ -69,8 +67,13 @@ public class PlatformSpawner : MonoBehaviour
 
         return value;
     }
+    private int PlatformRandomizer()
+    {
+        return Random.Range(0, platformPrefabs.Length);
+    }
 
-
-
-
+    private int FinalPadRandomizer()
+    {
+        return Random.Range(0, finalPadPrefabs.Length);
+    }
 }
