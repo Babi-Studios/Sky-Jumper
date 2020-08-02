@@ -11,14 +11,14 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/PlatformMoveHandler.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/FollowPlayer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlatformSpawner.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/FollowPlayer.cs" />
         <option value="$PROJECT_DIR$/Assets/PlatformMoveHandler.cs" />
+        <option value="$PROJECT_DIR$/Assets/FollowPlayer.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlatformSpawner.cs" />
       </list>
     </option>
   </component>
