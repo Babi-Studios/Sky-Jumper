@@ -3,11 +3,13 @@
 public class PlatformMoveHandler : MonoBehaviour
 {
     private bool isLeft;
+    Vector3 initialPos;
 
-    [SerializeField] float moveSpeed = 2f;
+    [SerializeField] float moveSpeed;
     // Start is called before the first frame update
     void Start()
     {
+        initialPos = transform.position;
         if (transform.position.x < 0)
         {
             isLeft = true;
@@ -16,6 +18,7 @@ public class PlatformMoveHandler : MonoBehaviour
         {
             isLeft = false;
         }
+        Invoke("Instantiater",InvokeTimeDetecter());
     }
 
     // Update is called once per frame
@@ -29,5 +32,34 @@ public class PlatformMoveHandler : MonoBehaviour
         {
             transform.Translate(Vector3.right * Time.deltaTime * moveSpeed);
         }
+        GameObjectDestoyer();
+    }
+
+    public void SetMoveSpeed(float platformSpeed)
+    {
+        moveSpeed = platformSpeed;
+    }
+    
+    public void SetScaleX(float platformScaleX)
+    {
+        transform.localScale = new Vector3(platformScaleX,transform.localScale.y,transform.localScale.z);
+    }
+
+    private void Instantiater()
+    {
+        Instantiate(gameObject, initialPos, Quaternion.identity);
+    }
+
+    private void GameObjectDestoyer()
+    {
+        if (transform.position.x >= 20 || transform.position.x <= -20)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private float InvokeTimeDetecter()
+    {
+       return Random.Range(2f, 3f);
     }
 }

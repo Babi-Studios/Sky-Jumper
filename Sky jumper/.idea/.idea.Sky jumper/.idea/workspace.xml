@@ -12,6 +12,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlatformSpawner.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlatformMoveHandler.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -19,6 +20,7 @@
         <option value="$PROJECT_DIR$/Assets/PlatformMoveHandler.cs" />
         <option value="$PROJECT_DIR$/Assets/FollowPlayer.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlatformSpawner.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlatformMoveHandler.cs" />
       </list>
     </option>
   </component>

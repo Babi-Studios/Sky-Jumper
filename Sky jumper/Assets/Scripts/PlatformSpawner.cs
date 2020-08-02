@@ -40,6 +40,8 @@ public class PlatformSpawner : MonoBehaviour
         {
             Instantiate(platformsOfLevel[i],
                 new Vector3(10 * xPosDetecter, -10, zPosDetecter + DistanceDetecter(platformsOfLevel[i])),Quaternion.identity);
+            platformsOfLevel[i].GetComponent<PlatformMoveHandler>().SetMoveSpeed(PlatformSpeedRandomizer());
+            platformsOfLevel[i].GetComponent<PlatformMoveHandler>().SetScaleX(PlatformScaleXRandomizer());
             zPosDetecter += DistanceDetecter(platformsOfLevel[i]);
             xPosDetecter *= -1;
         }
@@ -75,5 +77,15 @@ public class PlatformSpawner : MonoBehaviour
     private int FinalPadRandomizer()
     {
         return Random.Range(0, finalPadPrefabs.Length);
+    }
+
+    private float PlatformSpeedRandomizer()
+    {
+        return Random.Range(minSpeed, maxSpeed);
+    }
+    
+    private float PlatformScaleXRandomizer()
+    {
+        return Random.Range(minScaleX, maxScaleX);
     }
 }
