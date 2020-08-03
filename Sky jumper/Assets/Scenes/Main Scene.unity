@@ -1284,6 +1284,10 @@ MonoBehaviour:
   anim: {fileID: 1995852378}
   jumpSlider: {fileID: 1394374219}
   maxInputTime: 5
+  holdTimer: 0
+  grayFillAreaMultiplier: 1
+  colorsFillAreaMultiplier: 3
+  redFillAreaMultiplier: 1.5
 --- !u!95 &1995852378 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 9500000, guid: fa7f36c71b9e8fa4798df3a931c2fd92,
