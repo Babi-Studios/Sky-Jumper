@@ -11,6 +11,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlatformSpawner.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlatformMoveHandler.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -21,6 +22,7 @@
         <option value="$PROJECT_DIR$/Assets/FollowPlayer.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlatformSpawner.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlatformMoveHandler.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" />
       </list>
     </option>
   </component>
