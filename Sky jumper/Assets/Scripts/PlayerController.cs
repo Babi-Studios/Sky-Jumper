@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     public bool badTiming;
     public bool idleTiming;
 
-    private bool isOnPlatform;
+    private bool isOnPlatform = true;
     private float moveXSpeed;
 
     public float grayFillAreaMultiplier;
@@ -116,7 +116,7 @@ public class PlayerController : MonoBehaviour
                 SetParabolaRoots(0.5f,1,0);
             }
         }
-        else if (Input.GetKeyUp(KeyCode.Space))
+        else if (Input.GetKeyUp(KeyCode.Space) && isOnPlatform)
         {
             if (badTiming)
             {
@@ -168,18 +168,20 @@ public class PlayerController : MonoBehaviour
                 moveXSpeed = - other.gameObject.GetComponent<PlatformMoveHandler>().moveSpeed;
             }
             isOnPlatform = true;
+            other.gameObject.GetComponent<PlatformMoveHandler>().isPlayerExactlyOnThisPlatform = true;
         }
         
         if (other.gameObject.CompareTag("BlueFinalPad") || other.gameObject.CompareTag("GreenFinalPad") ||
             other.gameObject.CompareTag("YellowFinalPad"))
         {
+            isOnPlatform = true;
             anim.SetTrigger("dancing");
         }
     }
 
     private void MoveWithPlatform()
     {
-        transform.Translate(Vector3.right * moveXSpeed*Time.deltaTime);
+        transform.Translate(Vector3.right * moveXSpeed*Time.deltaTime/2);
     }
 
     public void FollowParabolaOnFalling()
@@ -190,4 +192,5 @@ public class PlayerController : MonoBehaviour
         parabolaControllerScript.FollowParabola();
     }
 
+    
 }

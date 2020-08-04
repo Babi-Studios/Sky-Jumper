@@ -6,6 +6,9 @@ public class PlatformMoveHandler : MonoBehaviour
     GameObject player;
     Vector3 initialPos;
 
+    private bool isPlayerOnPlatform;
+    public bool isPlayerExactlyOnThisPlatform;
+
     Renderer platformRenderer;
 
     public float moveSpeed;
@@ -31,13 +34,30 @@ public class PlatformMoveHandler : MonoBehaviour
     void Update()
     {
         PlayerPositionFollower();
+        
         if (!isLeft)
         {
-            transform.Translate(Vector3.right * (-1) * Time.deltaTime * moveSpeed);
+            if (isPlayerOnPlatform)
+            {
+                transform.Translate(Vector3.right * (-1) * Time.deltaTime * moveSpeed/2);
+            }
+            else
+            {
+                transform.Translate(Vector3.right * (-1) * Time.deltaTime * moveSpeed);
+            }
+           
         }
         else
         {
-            transform.Translate(Vector3.right * Time.deltaTime * moveSpeed);
+            if (isPlayerOnPlatform)
+            {
+                transform.Translate(Vector3.right * Time.deltaTime * moveSpeed/2);
+            }
+            else
+            {
+                transform.Translate(Vector3.right * Time.deltaTime * moveSpeed);
+            }
+            
         }
         GameObjectDestoyer();
     }
@@ -72,13 +92,34 @@ public class PlatformMoveHandler : MonoBehaviour
 
     private void PlayerPositionFollower()
     {
-        if (transform.position.z-player.transform.position.z>8f)
+        if (transform.position.z - player.transform.position.z < -0.5)
+        {
+            isPlayerExactlyOnThisPlatform = false;
+        }
+        
+        if (transform.position.z-player.transform.position.z>4.5f)
         {
             platformRenderer.enabled = false;
         }
-        else
+        else 
         {
             platformRenderer.enabled = true;
         }
+
+        if (transform.position.z - player.transform.position.z <= Mathf.Epsilon)
+        {
+            isPlayerOnPlatform = true;
+            if (!isPlayerExactlyOnThisPlatform)
+            {
+                platformRenderer.enabled = false;
+            }
+                
+        }
+        else
+        {
+            isPlayerOnPlatform = false;
+        }
+
+       
     }
 }
