@@ -27,8 +27,8 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/OnFalling.cs" />
         <option value="$PROJECT_DIR$/Assets/ScreenWidthViolence.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ScreenWidthViolence.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlatformMoveHandler.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" />
       </list>
     </option>
   </component>
