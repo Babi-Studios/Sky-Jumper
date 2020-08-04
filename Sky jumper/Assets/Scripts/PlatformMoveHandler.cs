@@ -6,6 +6,8 @@ public class PlatformMoveHandler : MonoBehaviour
     GameObject player;
     Vector3 initialPos;
 
+    public float visibilityDistance = 4.5f;
+    
     private bool isPlayerOnPlatform;
     public bool isPlayerExactlyOnThisPlatform;
 
@@ -97,7 +99,7 @@ public class PlatformMoveHandler : MonoBehaviour
             isPlayerExactlyOnThisPlatform = false;
         }
         
-        if (transform.position.z-player.transform.position.z>4.5f)
+        if (transform.position.z-player.transform.position.z>visibilityDistance)
         {
             platformRenderer.enabled = false;
         }

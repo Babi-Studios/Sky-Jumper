@@ -107,5 +107,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLeft: 0
+  visibilityDistance: 3.5
   isPlayerExactlyOnThisPlatform: 0
   moveSpeed: 3.64578

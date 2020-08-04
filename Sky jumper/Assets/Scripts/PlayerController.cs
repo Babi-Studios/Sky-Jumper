@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public bool idleTiming;
 
     private bool isOnPlatform = true;
+    private bool isOnFinalPad = false;
     private float moveXSpeed;
 
     public float grayFillAreaMultiplier;
@@ -43,6 +44,11 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         JumpHandler();
+        
+        if (isOnPlatform&&!isOnFinalPad)
+        {
+            MoveWithPlatform();   
+        }
     }
 
     private void JumpHandler()
@@ -140,11 +146,6 @@ public class PlayerController : MonoBehaviour
             holdTimer += 0;
             isOnPlatform = false;
         }
-
-        if (isOnPlatform)
-        {
-         MoveWithPlatform();   
-        }
     }
 
     private void SetParabolaRoots(float height, float forwardEndPoint , float verticalEndPoint)
@@ -174,6 +175,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("BlueFinalPad") || other.gameObject.CompareTag("GreenFinalPad") ||
             other.gameObject.CompareTag("YellowFinalPad"))
         {
+            isOnFinalPad = true;
             isOnPlatform = true;
             anim.SetTrigger("dancing");
         }
