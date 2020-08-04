@@ -6,7 +6,7 @@ public class PlatformSpawner : MonoBehaviour
     [SerializeField] GameObject[] platformPrefabs;
     [SerializeField] GameObject[] finalPadPrefabs;
     public GameObject[] platformsOfLevel;
-    public GameObject finalPad;
+    GameObject finalPad;
 
     [SerializeField] float maxScaleX;
     [SerializeField] float minScaleX;
@@ -52,17 +52,17 @@ public class PlatformSpawner : MonoBehaviour
     private int DistanceDetecter(GameObject platform)
     {
         int value=0;
-        if (platform.gameObject.CompareTag("BluePlatform"))
+        if (platform.gameObject.CompareTag("BluePlatform")||platform.gameObject.CompareTag("BlueFinalPad"))
         {
             value= 4;
         }
         
-        if (platform.gameObject.CompareTag("GreenPlatform"))
+        if (platform.gameObject.CompareTag("GreenPlatform")||platform.gameObject.CompareTag("GreenFinalPad"))
         {
             value =3;
         }
         
-        if (platform.gameObject.CompareTag("YellowPlatform"))
+        if (platform.gameObject.CompareTag("YellowPlatform")||platform.gameObject.CompareTag("YellowFinalPad"))
         {
             value= 2;
         }

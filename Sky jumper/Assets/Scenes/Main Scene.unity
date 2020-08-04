@@ -375,9 +375,8 @@ MonoBehaviour:
   - {fileID: 5626971934500350684, guid: cbf3652c00202774c8aea92972b01439, type: 3}
   - {fileID: 5626971934500350684, guid: 852bc838f9659bc42b0a637263e88fd5, type: 3}
   platformsOfLevel: []
-  finalPad: {fileID: 0}
-  maxScaleX: 3
-  minScaleX: 2
+  maxScaleX: 2.5
+  minScaleX: 1.5
   maxSpeed: 2
   minSpeed: 1
 --- !u!4 &491688086

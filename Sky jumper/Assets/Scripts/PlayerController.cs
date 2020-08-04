@@ -158,6 +158,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("BluePlatform") || other.gameObject.CompareTag("GreenPlatform") ||
             other.gameObject.CompareTag("YellowPlatform"))
         {
+            anim.SetBool("toIdle",true);
             if (other.gameObject.GetComponent<PlatformMoveHandler>().isLeft)
             {
                 moveXSpeed = other.gameObject.GetComponent<PlatformMoveHandler>().moveSpeed;    
@@ -167,6 +168,12 @@ public class PlayerController : MonoBehaviour
                 moveXSpeed = - other.gameObject.GetComponent<PlatformMoveHandler>().moveSpeed;
             }
             isOnPlatform = true;
+        }
+        
+        if (other.gameObject.CompareTag("BlueFinalPad") || other.gameObject.CompareTag("GreenFinalPad") ||
+            other.gameObject.CompareTag("YellowFinalPad"))
+        {
+            anim.SetTrigger("dancing");
         }
     }
 

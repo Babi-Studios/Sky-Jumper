@@ -7,6 +7,9 @@ TagManager:
   - BluePlatform
   - GreenPlatform
   - YellowPlatform
+  - BlueFinalPad
+  - GreenFinalPad
+  - YellowFinalPad
   layers:
   - Default
   - TransparentFX

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5023346499609982550}
   m_Layer: 0
   m_Name: FinalPads Yellow
-  m_TagString: YellowPlatform
+  m_TagString: YellowFinalPad
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
