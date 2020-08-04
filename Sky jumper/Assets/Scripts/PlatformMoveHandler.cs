@@ -2,10 +2,10 @@
 
 public class PlatformMoveHandler : MonoBehaviour
 {
-    private bool isLeft;
+    public bool isLeft;
     Vector3 initialPos;
 
-    [SerializeField] float moveSpeed;
+    public float moveSpeed;
     // Start is called before the first frame update
     void Start()
     {

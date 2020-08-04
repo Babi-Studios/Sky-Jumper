@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,6 +18,9 @@ public class PlayerController : MonoBehaviour
 
     public bool badTiming;
     public bool idleTiming;
+
+    private bool isOnPlatform;
+    private float moveXSpeed;
 
     public float grayFillAreaMultiplier;
     public float colorsFillAreaMultiplier;
@@ -134,6 +138,12 @@ public class PlayerController : MonoBehaviour
             jumpSlider.fillRect.gameObject.SetActive(false);
             jumpSlider.value = 0;
             holdTimer += 0;
+            isOnPlatform = false;
+        }
+
+        if (isOnPlatform)
+        {
+         MoveWithPlatform();   
         }
     }
 
@@ -141,5 +151,27 @@ public class PlayerController : MonoBehaviour
     {
         parabolaRoots[1].transform.localPosition=new Vector3(0,height,forwardEndPoint*0.6f);
         parabolaRoots[2].transform.localPosition=new Vector3(0,parabolaRoots[2].transform.localPosition.y,forwardEndPoint);
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("BluePlatform") || other.gameObject.CompareTag("GreenPlatform") ||
+            other.gameObject.CompareTag("YellowPlatform"))
+        {
+            if (other.gameObject.GetComponent<PlatformMoveHandler>().isLeft)
+            {
+                moveXSpeed = other.gameObject.GetComponent<PlatformMoveHandler>().moveSpeed;    
+            }
+            else
+            {
+                moveXSpeed = - other.gameObject.GetComponent<PlatformMoveHandler>().moveSpeed;
+            }
+            isOnPlatform = true;
+        }
+    }
+
+    private void MoveWithPlatform()
+    {
+        transform.Translate(Vector3.right * moveXSpeed*Time.deltaTime);
     }
 }
