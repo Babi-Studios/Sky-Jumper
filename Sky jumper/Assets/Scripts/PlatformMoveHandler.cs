@@ -19,8 +19,8 @@ public class PlatformMoveHandler : MonoBehaviour
     {
         player = GameObject.Find("Player");
         platformRenderer = GetComponent<Renderer>();
-       
         initialPos = transform.position;
+        
         if (transform.position.x < 0)
         {
             isLeft = true;
@@ -111,11 +111,11 @@ public class PlatformMoveHandler : MonoBehaviour
         if (transform.position.z - player.transform.position.z <= Mathf.Epsilon)
         {
             isPlayerOnPlatform = true;
+            
             if (!isPlayerExactlyOnThisPlatform)
             {
                 platformRenderer.enabled = false;
             }
-                
         }
         else
         {

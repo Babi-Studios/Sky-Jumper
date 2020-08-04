@@ -7,7 +7,7 @@ public class PlatformSpawner : MonoBehaviour
     [SerializeField] GameObject[] finalPadPrefabs;
     public GameObject[] platformsOfLevel;
     GameObject finalPad;
-
+    
     [SerializeField] float maxScaleX;
     [SerializeField] float minScaleX;
 

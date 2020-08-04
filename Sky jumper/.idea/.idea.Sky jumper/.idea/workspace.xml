@@ -13,6 +13,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ScreenWidthViolence.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/FollowPlayer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/OnFalling.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlatformSpawner.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlatformMoveHandler.cs" root0="FORCE_HIGHLIGHTING" />
@@ -23,12 +24,14 @@
       <list>
         <option value="$PROJECT_DIR$/Assets/PlatformMoveHandler.cs" />
         <option value="$PROJECT_DIR$/Assets/FollowPlayer.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PlatformSpawner.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/OnFalling.cs" />
         <option value="$PROJECT_DIR$/Assets/ScreenWidthViolence.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/ScreenWidthViolence.cs" />
+        <option value="$PROJECT_DIR$/Assets/SceneRestarter.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/FollowPlayer.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlatformMoveHandler.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ScreenWidthViolence.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/OnFalling.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlatformSpawner.cs" />
       </list>
     </option>
   </component>

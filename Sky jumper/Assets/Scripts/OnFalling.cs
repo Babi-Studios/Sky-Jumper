@@ -6,12 +6,21 @@ using UnityEngine.SceneManagement;
 
 public class OnFalling : MonoBehaviour
 {
+    private GameObject player;
+
+    private void Start()
+    {
+        player = GameObject.Find("Player");
+    }
+
     // Start is called before the first frame update
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            player.GetComponent<Animator>().SetBool("jumped",false);
+            player.GetComponent<Animator>().SetTrigger("falling");
         }
     }
+    
 }

@@ -16,7 +16,7 @@ public class ScreenWidthViolence : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            player.GetComponent<Animator>().SetTrigger("badtiming");
+            player.GetComponent<Animator>().SetTrigger("falling");
             player.GetComponent<PlayerController>().FollowParabolaOnFalling();
         }
     }
