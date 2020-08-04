@@ -13,6 +13,8 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="FollowPlayer.cs" t="Include" />
+          <e p="MathParabola.cs" t="Include" />
+          <e p="ParabolaController.cs" t="Include" />
           <e p="PlatformMoveHandler.cs" t="Include" />
           <e p="PlatformSpawner.cs" t="Include" />
           <e p="PlayerController.cs" t="Include" />

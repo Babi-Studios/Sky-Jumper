@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour
 
     public Slider jumpSlider;
 
+    public GameObject[] parabolaRoots;
+    private ParabolaController parabolaControllerScript;
+
     public float maxInputTime;
     public float holdTimer;
 
@@ -22,6 +25,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        parabolaControllerScript = GetComponent<ParabolaController>();
+        
         jumpSlider.maxValue = maxInputTime;
         jumpSlider.value = 0;
         jumpSlider.fillRect.gameObject.SetActive(false);
@@ -53,36 +58,43 @@ public class PlayerController : MonoBehaviour
             {
                 jumpSlider.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color=Color.gray;
                 badTiming = true;
+                SetParabolaRoots(0.5f,1);
             }
             else if (jumpSlider.value <= maxInputTime*(grayFillAreaMultiplier+colorsFillAreaMultiplier)*oneUnitForColorChange)
             {
                 jumpSlider.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color=Color.yellow; 
                 badTiming = false;
+                SetParabolaRoots(1,2);
             }
             else if (jumpSlider.value <= maxInputTime*(2*grayFillAreaMultiplier+colorsFillAreaMultiplier)*oneUnitForColorChange)
             {
                 jumpSlider.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color=Color.gray;
                 badTiming = true;
+                SetParabolaRoots(0.5f,1);
             }
             else if (jumpSlider.value <= maxInputTime*(2*grayFillAreaMultiplier+2*colorsFillAreaMultiplier)*oneUnitForColorChange)
             {
                 jumpSlider.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color=Color.green;
                 badTiming = false;
+                SetParabolaRoots(1.5f,3);
             }
             else if (jumpSlider.value <= maxInputTime*(3*grayFillAreaMultiplier+2*colorsFillAreaMultiplier)*oneUnitForColorChange)
             {
                 jumpSlider.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color=Color.gray;
                 badTiming = true;
+                SetParabolaRoots(0.5f,1);
             }
             else if (jumpSlider.value <= maxInputTime*(3*grayFillAreaMultiplier+3*colorsFillAreaMultiplier)*oneUnitForColorChange)
             {
                 jumpSlider.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color=Color.blue;
                 badTiming = false;
+                SetParabolaRoots(2,4);
             }
             else if (jumpSlider.value<= maxInputTime*(4*grayFillAreaMultiplier+3*colorsFillAreaMultiplier)*oneUnitForColorChange)
             {
                 jumpSlider.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color=Color.gray;
                 badTiming = true;
+                SetParabolaRoots(0.5f,1);
             }
             else if (jumpSlider.value<= maxInputTime*(4*grayFillAreaMultiplier+3*colorsFillAreaMultiplier+redFillAreaMultiplier)*oneUnitForColorChange)
             {
@@ -97,6 +109,7 @@ public class PlayerController : MonoBehaviour
                 badTiming = true;
                 jumpSlider.fillRect.gameObject.SetActive(false);
                 anim.SetTrigger("overtiming");
+                SetParabolaRoots(0.5f,1);
             }
         }
         else if (Input.GetKeyUp(KeyCode.Space))
@@ -105,6 +118,7 @@ public class PlayerController : MonoBehaviour
             {
                 anim.SetBool("readyForJump",false);
                 anim.SetTrigger("badtiming");
+                parabolaControllerScript.FollowParabola();
             }
             else if (idleTiming)
             {
@@ -115,11 +129,17 @@ public class PlayerController : MonoBehaviour
             {
                 anim.SetBool("readyForJump",false);
                 anim.SetBool("jumped",true);
+                parabolaControllerScript.FollowParabola();
             }
-            
             jumpSlider.fillRect.gameObject.SetActive(false);
             jumpSlider.value = 0;
             holdTimer += 0;
         }
+    }
+
+    private void SetParabolaRoots(float height, float forwardEndPoint)
+    {
+        parabolaRoots[1].transform.localPosition=new Vector3(0,height,forwardEndPoint*0.6f);
+        parabolaRoots[2].transform.localPosition=new Vector3(0,parabolaRoots[2].transform.localPosition.y,forwardEndPoint);
     }
 }
