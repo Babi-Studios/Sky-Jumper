@@ -365,7 +365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8b0727131d32e54baeabf4b808dd58a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platformAmount: 6
+  platformAmount: 10
   platformPrefabs:
   - {fileID: 3200382626303083996, guid: ec15cf6ff60deb74dbedcd39cd27033e, type: 3}
   - {fileID: 1727248662796868469, guid: 5fcead7cb2ebea04dab7d397aa6cf7de, type: 3}
@@ -375,8 +375,8 @@ MonoBehaviour:
   - {fileID: 5626971934500350684, guid: cbf3652c00202774c8aea92972b01439, type: 3}
   - {fileID: 5626971934500350684, guid: 852bc838f9659bc42b0a637263e88fd5, type: 3}
   platformsOfLevel: []
-  maxScaleX: 2.5
-  minScaleX: 1.5
+  maxScaleX: 3
+  minScaleX: 2
   maxSpeed: 2
   minSpeed: 1
 --- !u!4 &491688086
@@ -1344,7 +1344,7 @@ MonoBehaviour:
   - {fileID: 729841449}
   - {fileID: 392520050}
   - {fileID: 1648338330}
-  maxInputTime: 3
+  maxInputTime: 2
   holdTimer: 0
   badTiming: 0
   idleTiming: 0
@@ -1369,7 +1369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db3568106bec44e458bb41c2a311e451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 3
+  Speed: 6
   ParabolaRoot: {fileID: 1554762318}
   Autostart: 0
   Animation: 0

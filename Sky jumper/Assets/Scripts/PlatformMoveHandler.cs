@@ -3,12 +3,18 @@
 public class PlatformMoveHandler : MonoBehaviour
 {
     public bool isLeft;
+    GameObject player;
     Vector3 initialPos;
+
+    Renderer platformRenderer;
 
     public float moveSpeed;
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("Player");
+        platformRenderer = GetComponent<Renderer>();
+       
         initialPos = transform.position;
         if (transform.position.x < 0)
         {
@@ -24,6 +30,7 @@ public class PlatformMoveHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        PlayerPositionFollower();
         if (!isLeft)
         {
             transform.Translate(Vector3.right * (-1) * Time.deltaTime * moveSpeed);
@@ -61,5 +68,17 @@ public class PlatformMoveHandler : MonoBehaviour
     private float InvokeTimeDetecter()
     {
        return Random.Range(2f, 3f);
+    }
+
+    private void PlayerPositionFollower()
+    {
+        if (transform.position.z-player.transform.position.z>=10f)
+        {
+            platformRenderer.enabled = false;
+        }
+        else
+        {
+            platformRenderer.enabled = true;
+        }
     }
 }
