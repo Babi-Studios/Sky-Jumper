@@ -62,43 +62,43 @@ public class PlayerController : MonoBehaviour
             {
                 jumpSlider.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color=Color.gray;
                 badTiming = true;
-                SetParabolaRoots(0.5f,1);
+                SetParabolaRoots(0.5f,1,0);
             }
             else if (jumpSlider.value <= maxInputTime*(grayFillAreaMultiplier+colorsFillAreaMultiplier)*oneUnitForColorChange)
             {
                 jumpSlider.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color=Color.yellow; 
                 badTiming = false;
-                SetParabolaRoots(1,2);
+                SetParabolaRoots(1,2,0);
             }
             else if (jumpSlider.value <= maxInputTime*(2*grayFillAreaMultiplier+colorsFillAreaMultiplier)*oneUnitForColorChange)
             {
                 jumpSlider.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color=Color.gray;
                 badTiming = true;
-                SetParabolaRoots(0.5f,1);
+                SetParabolaRoots(0.5f,1,0);
             }
             else if (jumpSlider.value <= maxInputTime*(2*grayFillAreaMultiplier+2*colorsFillAreaMultiplier)*oneUnitForColorChange)
             {
                 jumpSlider.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color=Color.green;
                 badTiming = false;
-                SetParabolaRoots(1.5f,3);
+                SetParabolaRoots(1.5f,3,0);
             }
             else if (jumpSlider.value <= maxInputTime*(3*grayFillAreaMultiplier+2*colorsFillAreaMultiplier)*oneUnitForColorChange)
             {
                 jumpSlider.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color=Color.gray;
                 badTiming = true;
-                SetParabolaRoots(0.5f,1);
+                SetParabolaRoots(0.5f,1,0);
             }
             else if (jumpSlider.value <= maxInputTime*(3*grayFillAreaMultiplier+3*colorsFillAreaMultiplier)*oneUnitForColorChange)
             {
                 jumpSlider.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color=Color.blue;
                 badTiming = false;
-                SetParabolaRoots(2,4);
+                SetParabolaRoots(2,4,0);
             }
             else if (jumpSlider.value<= maxInputTime*(4*grayFillAreaMultiplier+3*colorsFillAreaMultiplier)*oneUnitForColorChange)
             {
                 jumpSlider.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color=Color.gray;
                 badTiming = true;
-                SetParabolaRoots(0.5f,1);
+                SetParabolaRoots(0.5f,1,0);
             }
             else if (jumpSlider.value<= maxInputTime*(4*grayFillAreaMultiplier+3*colorsFillAreaMultiplier+redFillAreaMultiplier)*oneUnitForColorChange)
             {
@@ -113,7 +113,7 @@ public class PlayerController : MonoBehaviour
                 badTiming = true;
                 jumpSlider.fillRect.gameObject.SetActive(false);
                 anim.SetTrigger("overtiming");
-                SetParabolaRoots(0.5f,1);
+                SetParabolaRoots(0.5f,1,0);
             }
         }
         else if (Input.GetKeyUp(KeyCode.Space))
@@ -147,10 +147,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void SetParabolaRoots(float height, float forwardEndPoint)
+    private void SetParabolaRoots(float height, float forwardEndPoint , float verticalEndPoint)
     {
         parabolaRoots[1].transform.localPosition=new Vector3(0,height,forwardEndPoint*0.6f);
-        parabolaRoots[2].transform.localPosition=new Vector3(0,parabolaRoots[2].transform.localPosition.y,forwardEndPoint);
+        parabolaRoots[2].transform.localPosition=new Vector3(0,verticalEndPoint,forwardEndPoint);
     }
 
     private void OnCollisionEnter(Collision other)
@@ -181,4 +181,13 @@ public class PlayerController : MonoBehaviour
     {
         transform.Translate(Vector3.right * moveXSpeed*Time.deltaTime);
     }
+
+    public void FollowParabolaOnFalling()
+    {
+        isOnPlatform = false;
+        SetParabolaRoots(0.5f,1,0);
+        parabolaControllerScript.Speed = 5;
+        parabolaControllerScript.FollowParabola();
+    }
+
 }

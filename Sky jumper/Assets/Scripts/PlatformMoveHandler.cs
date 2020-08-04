@@ -72,7 +72,7 @@ public class PlatformMoveHandler : MonoBehaviour
 
     private void PlayerPositionFollower()
     {
-        if (transform.position.z-player.transform.position.z>=10f)
+        if (transform.position.z-player.transform.position.z>8f)
         {
             platformRenderer.enabled = false;
         }
