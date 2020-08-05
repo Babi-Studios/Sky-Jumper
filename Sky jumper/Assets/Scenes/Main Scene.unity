@@ -329,16 +329,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8b0727131d32e54baeabf4b808dd58a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platformAmount: 5
+  spawnerType1: 1
+  spawnerType2: 0
+  spawnerType3: 0
+  platformAmount: 7
   platformPrefabs:
   - {fileID: 3200382626303083996, guid: ec15cf6ff60deb74dbedcd39cd27033e, type: 3}
   - {fileID: 1727248662796868469, guid: 5fcead7cb2ebea04dab7d397aa6cf7de, type: 3}
   - {fileID: 8777923580708238337, guid: 3e374c17d495e7645bbbe17b9e9014f5, type: 3}
+  platformsOfLevel: []
   finalPadPrefabs:
   - {fileID: 5626971934500350684, guid: 24b43a17a5034a5498c14873dd3f8aec, type: 3}
   - {fileID: 5626971934500350684, guid: cbf3652c00202774c8aea92972b01439, type: 3}
   - {fileID: 5626971934500350684, guid: 852bc838f9659bc42b0a637263e88fd5, type: 3}
-  platformsOfLevel: []
+  breakPadAmount: 2
+  breakPadPrefabs:
+  - {fileID: 5626971934500350684, guid: ad358509a335b184091e364dd844b459, type: 3}
+  - {fileID: 5626971934500350684, guid: 3db6e2f35e3bf02438195f64014dc652, type: 3}
+  - {fileID: 5626971934500350684, guid: 41c3c314f534114479cf27bcf0e7dee9, type: 3}
+  breakPadsOfLevel: []
+  movingBreakPadAmount: 0
+  movingBreakPadPrefabs: []
+  obstacleAmount: 0
+  obstaclePrefabs: []
+  movingObstacleAmount: 0
+  movingObstaclePrefabs: []
   maxScaleX: 3
   minScaleX: 2
   maxSpeed: 5

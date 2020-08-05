@@ -10,6 +10,14 @@ TagManager:
   - BlueFinalPad
   - GreenFinalPad
   - YellowFinalPad
+  - YellowBreakPad
+  - BlueBreakPad
+  - GreenBreakPad
+  - YellowMovingBreakPad
+  - BlueMovingBreakPad
+  - GreenMovingBreakPad
+  - Obstacle
+  - Moving Obstacle
   layers:
   - Default
   - TransparentFX
