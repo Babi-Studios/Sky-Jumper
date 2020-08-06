@@ -24,21 +24,13 @@ public class MovingBreakPad : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            isPlayerOnPlatform = false;
-        }
-        
+     
         MoveCycle();
 
         PlayerPositionFollower();
 
         GameObjectDestoyer();
 
-        if (isPlayerOnPlatform)
-        {
-            
-        }
     }
 
     private void MoveCycle()
@@ -48,11 +40,6 @@ public class MovingBreakPad : MonoBehaviour
         movementFactor = rawSinWave;
         Vector3 offset = movementFactor * Vector3.right * moveRange;
         transform.position = startingPos + offset;
-        if (isPlayerOnPlatform)
-        {
-            player.transform.position = transform.position +
-                                        new Vector3(player.GetComponent<PlayerController>().offsetToMBP, player.transform.position.y, 0);
-        }
     }
 
     private void GameObjectDestoyer()

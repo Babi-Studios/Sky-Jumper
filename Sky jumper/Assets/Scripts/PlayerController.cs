@@ -6,8 +6,9 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-
+    GameObject target;
     public float offsetToMBP;
+    
     public Animator anim;
 
     public GameObject fireworkParticle;
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public bool enableForJumping;
     
     private bool isOnPlatform = true;
+    private bool isOnMovingBreakPad = false;
     private bool isOnFinalPad = false;
     private float moveXSpeed;
 
@@ -51,6 +53,13 @@ public class PlayerController : MonoBehaviour
         {
             JumpHandler();
             MoveWithPlatform();
+        }
+
+        if (isOnMovingBreakPad && !isOnFinalPad)
+        {
+            JumpHandler();
+            MoveWithMovingBreakPad();
+
         }
     }
 
@@ -133,6 +142,7 @@ public class PlayerController : MonoBehaviour
             jumpSlider.gameObject.SetActive(false);
             jumpSlider.value = 0;
             isOnPlatform = false;
+            isOnMovingBreakPad = false;
         }
     }
 
@@ -178,12 +188,13 @@ private void SetParabolaRoots(float height, float forwardEndPoint)
         if (other.gameObject.CompareTag("BlueMovingBreakPad") || other.gameObject.CompareTag("GreenMovingBreakPad") ||
             other.gameObject.CompareTag("YellowMovingBreakPad"))
         {
+            target = other.gameObject;
             transform.position=new Vector3(transform.position.x,transform.position.y,other.gameObject.transform.position.z);
             offsetToMBP = transform.position.x - other.gameObject.transform.position.x;
             anim.SetBool("jumped",false);
             anim.SetBool("toIdle",true);
             moveXSpeed = 0;
-            isOnPlatform = true;
+            isOnMovingBreakPad = true;
         }
         
         if (other.gameObject.CompareTag("BlueFinalPad") || other.gameObject.CompareTag("GreenFinalPad") ||
@@ -206,6 +217,11 @@ private void SetParabolaRoots(float height, float forwardEndPoint)
     private void MoveWithPlatform()
     {
         transform.Translate(Vector3.right * moveXSpeed*Time.deltaTime/2);
+    }
+
+    private void MoveWithMovingBreakPad()
+    {
+        transform.position = target.transform.position + new Vector3(offsetToMBP, transform.position.y, 0);
     }
 
     public void FollowParabolaOnFalling()
