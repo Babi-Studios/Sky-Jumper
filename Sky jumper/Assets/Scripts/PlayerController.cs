@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+
+    public float offsetToMBP;
     public Animator anim;
 
     public GameObject fireworkParticle;
@@ -26,8 +28,7 @@ public class PlayerController : MonoBehaviour
     public float grayFillAreaMultiplier;
 
     public float colorsFillAreaMultiplier;
-
-    //public float redFillAreaMultiplier;
+    
     private float oneUnitForColorChange;
 
     // Start is called before the first frame update
@@ -147,8 +148,10 @@ private void SetParabolaRoots(float height, float forwardEndPoint)
         if (other.gameObject.CompareTag("BluePlatform") || other.gameObject.CompareTag("GreenPlatform") ||
             other.gameObject.CompareTag("YellowPlatform"))
         {
+            transform.position=new Vector3(transform.position.x,transform.position.y,other.gameObject.transform.position.z);
             anim.SetBool("jumped",false);
             anim.SetBool("toIdle",true);
+            
            if (other.gameObject.GetComponent<PlatformMoveHandler>().isLeft)
             {
                 moveXSpeed = other.gameObject.GetComponent<PlatformMoveHandler>().moveSpeed;    
@@ -157,13 +160,36 @@ private void SetParabolaRoots(float height, float forwardEndPoint)
             {
                 moveXSpeed = - other.gameObject.GetComponent<PlatformMoveHandler>().moveSpeed;
             }
+            
             isOnPlatform = true;
             other.gameObject.GetComponent<PlatformMoveHandler>().isPlayerExactlyOnThisPlatform = true;
+        }
+        
+        if (other.gameObject.CompareTag("BlueBreakPad") || other.gameObject.CompareTag("GreenBreakPad") ||
+            other.gameObject.CompareTag("YellowBreakPad"))
+        {
+            transform.position=new Vector3(transform.position.x,transform.position.y,other.gameObject.transform.position.z);
+            anim.SetBool("jumped",false);
+            anim.SetBool("toIdle",true);
+            moveXSpeed = 0;
+            isOnPlatform = true;
+        }
+        
+        if (other.gameObject.CompareTag("BlueMovingBreakPad") || other.gameObject.CompareTag("GreenMovingBreakPad") ||
+            other.gameObject.CompareTag("YellowMovingBreakPad"))
+        {
+            transform.position=new Vector3(transform.position.x,transform.position.y,other.gameObject.transform.position.z);
+            offsetToMBP = transform.position.x - other.gameObject.transform.position.x;
+            anim.SetBool("jumped",false);
+            anim.SetBool("toIdle",true);
+            moveXSpeed = 0;
+            isOnPlatform = true;
         }
         
         if (other.gameObject.CompareTag("BlueFinalPad") || other.gameObject.CompareTag("GreenFinalPad") ||
             other.gameObject.CompareTag("YellowFinalPad"))
         {
+            transform.position=new Vector3(transform.position.x,transform.position.y,other.gameObject.transform.position.z);
             isOnFinalPad = true;
             isOnPlatform = true;
             anim.SetTrigger("dancing");
@@ -189,5 +215,9 @@ private void SetParabolaRoots(float height, float forwardEndPoint)
         parabolaControllerScript.FollowParabola();
     }
 
+    public void AddXPosOfPlayer(float offset)
+    {
+        transform.position += new Vector3(offset,0,0);
+    }
     
 }

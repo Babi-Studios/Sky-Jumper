@@ -37,30 +37,8 @@ public class PlatformMoveHandler : MonoBehaviour
     {
         PlayerPositionFollower();
         
-        if (!isLeft)
-        {
-            if (isPlayerOnPlatform)
-            {
-                transform.Translate(Vector3.right * (-1) * Time.deltaTime * moveSpeed/2);
-            }
-            else
-            {
-                transform.Translate(Vector3.right * (-1) * Time.deltaTime * moveSpeed);
-            }
-           
-        }
-        else
-        {
-            if (isPlayerOnPlatform)
-            {
-                transform.Translate(Vector3.right * Time.deltaTime * moveSpeed/2);
-            }
-            else
-            {
-                transform.Translate(Vector3.right * Time.deltaTime * moveSpeed);
-            }
-            
-        }
+        SpeedHandler();
+        
         GameObjectDestoyer();
     }
 
@@ -92,6 +70,34 @@ public class PlatformMoveHandler : MonoBehaviour
        return Random.Range(2f, 3f);
     }
 
+    private void SpeedHandler()
+    {
+        if (!isLeft)
+        {
+            if (isPlayerOnPlatform)
+            {
+                transform.Translate(Vector3.right * (-1) * Time.deltaTime * moveSpeed/2);
+            }
+            else
+            {
+                transform.Translate(Vector3.right * (-1) * Time.deltaTime * moveSpeed);
+            }
+           
+        }
+        else
+        {
+            if (isPlayerOnPlatform)
+            {
+                transform.Translate(Vector3.right * Time.deltaTime * moveSpeed/2);
+            }
+            else
+            {
+                transform.Translate(Vector3.right * Time.deltaTime * moveSpeed);
+            }
+            
+        }
+    }
+
     private void PlayerPositionFollower()
     {
         if (transform.position.z - player.transform.position.z < -0.5)
@@ -121,7 +127,5 @@ public class PlatformMoveHandler : MonoBehaviour
         {
             isPlayerOnPlatform = false;
         }
-
-       
     }
 }

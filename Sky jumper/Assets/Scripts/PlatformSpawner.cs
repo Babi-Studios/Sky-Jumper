@@ -3,9 +3,11 @@ using UnityEngine.SocialPlatforms;
 
 public class PlatformSpawner : MonoBehaviour
 {
-    public bool spawnerType1=true;
+    public bool spawnerType1;
     public bool spawnerType2;
     public bool spawnerType3;
+    public bool spawnerType4;
+    public bool spawnerType5;
 
     [SerializeField] int platformAmount;
     [SerializeField] GameObject[] platformPrefabs;
@@ -17,6 +19,7 @@ public class PlatformSpawner : MonoBehaviour
     public GameObject[] breakPadsOfLevel;
     [SerializeField] int movingBreakPadAmount;
     [SerializeField] GameObject[] movingBreakPadPrefabs;
+    public GameObject[] movingBreakPadsOfLevel;
     [SerializeField] int obstacleAmount;
     [SerializeField] GameObject[] obstaclePrefabs;
     [SerializeField] int movingObstacleAmount;
@@ -27,18 +30,34 @@ public class PlatformSpawner : MonoBehaviour
 
     [SerializeField] float maxSpeed;
     [SerializeField] float minSpeed;
+    
+    [SerializeField] float maxPeriodOfMBP;
+    [SerializeField] float minPeriodOfMBP;
+    [SerializeField] float maxMoveRangeOfMBP;
+    [SerializeField] float minMoveRangeOfMBP;
 
     private void Start()
     {
+        SpawnerTypeDecider();
         platformsOfLevel = RandomPlatforms();
         breakPadsOfLevel = RandomBreakPads();
+        movingBreakPadsOfLevel = RandomMovingBreakPads();
+
         if (spawnerType1)
         {
-            Invoke("SpawnerType1Execute", 0.1f);    
+            Invoke("SpawnerType1Execute",0);
         }
         else if (spawnerType2)
         {
-            Invoke("SpawnerType2Execute", 0.1f); 
+            Invoke("SpawnerType2Execute", 0);    
+        }
+        else if (spawnerType3)
+        {
+            Invoke("SpawnerType3Execute", 0); 
+        }
+        else if (spawnerType4)
+        {
+            Invoke("SpawnerType4Execute", 0); 
         }
     }
 
@@ -47,7 +66,7 @@ public class PlatformSpawner : MonoBehaviour
         GameObject[] tempPlatforms = new GameObject[platformAmount];
         for (int i = 0; i < platformAmount; i++)
         {
-            tempPlatforms[i] = platformPrefabs[PlatformRandomizer()];
+            tempPlatforms[i] = platformPrefabs[Randomizer(platformPrefabs)];
         }
 
         return tempPlatforms;
@@ -58,16 +77,42 @@ public class PlatformSpawner : MonoBehaviour
         GameObject[] tempBreakPads = new GameObject[breakPadAmount];
         for (int i = 0; i < breakPadAmount; i++)
         {
-            tempBreakPads[i] = breakPadPrefabs[PlatformRandomizer()];
+            tempBreakPads[i] = breakPadPrefabs[Randomizer(breakPadPrefabs)];
         }
 
         return tempBreakPads;
+    }
+    
+    private GameObject[] RandomMovingBreakPads()
+    {
+        GameObject[] tempMovingBreakPads = new GameObject[movingBreakPadAmount];
+        for (int i = 0; i < movingBreakPadAmount; i++)
+        {
+            tempMovingBreakPads[i] = movingBreakPadPrefabs[Randomizer(movingBreakPadPrefabs)];
+        }
+
+        return tempMovingBreakPads;
     }
 
     private void SpawnerType1Execute()
     {
         int zPosDetecter = 0;
+       
+        for (int i = 0; i < breakPadsOfLevel.Length; i++)
+        {
+            Instantiate(breakPadsOfLevel[i],
+                new Vector3(0, 0, zPosDetecter + DistanceDetecter(breakPadsOfLevel[i])),
+                Quaternion.identity);
+            zPosDetecter += DistanceDetecter(breakPadsOfLevel[i]);
+        }
+        finalPad = finalPadPrefabs[Randomizer(finalPadPrefabs)];
+        Instantiate(finalPad, new Vector3(0, 0, zPosDetecter + DistanceDetecter(finalPad)), Quaternion.identity);
+    }
+    private void SpawnerType2Execute()
+    {
+        int zPosDetecter = 0;
         int xPosDetecter = 1;
+        
         for (int i = 0; i < platformsOfLevel.Length; i++)
         {
             Instantiate(platformsOfLevel[i],
@@ -79,15 +124,16 @@ public class PlatformSpawner : MonoBehaviour
             xPosDetecter *= -1;
         }
 
-        finalPad = finalPadPrefabs[FinalPadRandomizer()];
+        finalPad = finalPadPrefabs[Randomizer(finalPadPrefabs)];
         Instantiate(finalPad, new Vector3(0, 0, zPosDetecter + DistanceDetecter(finalPad)), Quaternion.identity);
     }
-    private void SpawnerType2Execute()
+    
+    private void SpawnerType3Execute()
     {
         int zPosDetecter = 0;
         int xPosDetecter = 1;
-        int tempa = Mathf.FloorToInt(platformAmount / breakPadAmount)-1;
-        int inca = 0;
+        int tempa = Mathf.FloorToInt(platformAmount / breakPadAmount);
+        int breakPadIndex = 0;
         for (int i = 0; i < platformsOfLevel.Length; i++)
         {
             tempa--;
@@ -100,15 +146,49 @@ public class PlatformSpawner : MonoBehaviour
             xPosDetecter *= -1;
             if (tempa == 0)
             {
-                Instantiate(breakPadsOfLevel[inca],
-                    new Vector3(0, 0, zPosDetecter + DistanceDetecter(breakPadsOfLevel[inca])),
+                Instantiate(breakPadsOfLevel[breakPadIndex],
+                    new Vector3(3*xPosDetecter, 0, zPosDetecter + DistanceDetecter(breakPadsOfLevel[breakPadIndex])),
                     Quaternion.identity);
-                zPosDetecter += DistanceDetecter(breakPadsOfLevel[inca]);
-                inca++;
+                zPosDetecter += DistanceDetecter(breakPadsOfLevel[breakPadIndex]);
+                breakPadIndex++;
+                tempa=Mathf.FloorToInt(platformAmount / breakPadAmount);
             }
         }
 
-        finalPad = finalPadPrefabs[FinalPadRandomizer()];
+        finalPad = finalPadPrefabs[Randomizer(finalPadPrefabs)];
+        Instantiate(finalPad, new Vector3(0, 0, zPosDetecter + DistanceDetecter(finalPad)), Quaternion.identity);
+    }
+    
+    private void SpawnerType4Execute()
+    {
+        int zPosDetecter = 0;
+        int xPosDetecter = 1;
+        int tempa = Mathf.FloorToInt(platformAmount / movingBreakPadAmount);
+        int movingBreakPadIndex = 0;
+        for (int i = 0; i < platformsOfLevel.Length; i++)
+        {
+            tempa--;
+            Instantiate(platformsOfLevel[i],
+                new Vector3(10 * xPosDetecter, -10, zPosDetecter + DistanceDetecter(platformsOfLevel[i])),
+                Quaternion.identity);
+            platformsOfLevel[i].GetComponent<PlatformMoveHandler>().SetMoveSpeed(PlatformSpeedRandomizer());
+            platformsOfLevel[i].GetComponent<PlatformMoveHandler>().SetScaleX(PlatformScaleXRandomizer());
+            zPosDetecter += DistanceDetecter(platformsOfLevel[i]);
+            xPosDetecter *= -1;
+            if (tempa == 0)
+            {
+                movingBreakPadsOfLevel[movingBreakPadIndex].GetComponent<MovingBreakPad>().SetPeriod(MBPPeriodRandomizer());
+                movingBreakPadsOfLevel[movingBreakPadIndex].GetComponent<MovingBreakPad>().SetMoveRange(MBPRangeRandomizer());
+                Instantiate(movingBreakPadsOfLevel[movingBreakPadIndex],
+                    new Vector3(3*xPosDetecter, 0, zPosDetecter + DistanceDetecter(movingBreakPadsOfLevel[movingBreakPadIndex])),
+                    Quaternion.identity);
+                zPosDetecter += DistanceDetecter(movingBreakPadsOfLevel[movingBreakPadIndex]);
+                movingBreakPadIndex++;
+                tempa=Mathf.FloorToInt(platformAmount / movingBreakPadAmount);
+            }
+        }
+
+        finalPad = finalPadPrefabs[Randomizer(finalPadPrefabs)];
         Instantiate(finalPad, new Vector3(0, 0, zPosDetecter + DistanceDetecter(finalPad)), Quaternion.identity);
     }
 
@@ -116,49 +196,73 @@ public class PlatformSpawner : MonoBehaviour
     {
         int value = 0;
         if (platform.gameObject.CompareTag("BluePlatform") || platform.gameObject.CompareTag("BlueFinalPad")|| 
-            platform.gameObject.CompareTag("BlueBreakPad"))
+            platform.gameObject.CompareTag("BlueBreakPad") || platform.gameObject.CompareTag("BlueMovingBreakPad"))
         {
             value = 4;
         }
 
         if (platform.gameObject.CompareTag("GreenPlatform") || platform.gameObject.CompareTag("GreenFinalPad")|| 
-            platform.gameObject.CompareTag("GreenBreakPad"))
+            platform.gameObject.CompareTag("GreenBreakPad") || platform.gameObject.CompareTag("GreenMovingBreakPad"))
         {
             value = 3;
         }
 
         if (platform.gameObject.CompareTag("YellowPlatform") || platform.gameObject.CompareTag("YellowFinalPad")|| 
-            platform.gameObject.CompareTag("YellowBreakPad"))
+            platform.gameObject.CompareTag("YellowBreakPad") || platform.gameObject.CompareTag("YellowMovingBreakPad"))
         {
             value = 2;
         }
 
         return value;
     }
-
-    // Randomizer'ın hepsini GameObject[] variable alan bir method yap adı da ObjectRandomizer() falan olsun
-    private int PlatformRandomizer()
+    
+    private int Randomizer(GameObject[] prefabs)
     {
-        return Random.Range(0, platformPrefabs.Length);
+        return Random.Range(0, prefabs.Length);
     }
-
-    private int BreakPadRandomizer()
-    {
-        return Random.Range(0, breakPadPrefabs.Length);
-    }
-
-    private int FinalPadRandomizer()
-    {
-        return Random.Range(0, finalPadPrefabs.Length);
-    }
-
+   
     private float PlatformSpeedRandomizer()
     {
         return Random.Range(minSpeed, maxSpeed);
+    }
+    
+    private float MBPPeriodRandomizer()
+    {
+        return Random.Range(minPeriodOfMBP, maxPeriodOfMBP);
     }
 
     private float PlatformScaleXRandomizer()
     {
         return Random.Range(minScaleX, maxScaleX);
+    }
+
+    private float MBPRangeRandomizer()
+    {
+        return Random.Range(minMoveRangeOfMBP, maxMoveRangeOfMBP);
+    }
+
+    private void SpawnerTypeDecider()
+    {
+        if (platformAmount==0)
+        {
+            spawnerType1 = true;
+        }
+        else if (platformAmount > breakPadAmount && breakPadAmount <= 0 && movingBreakPadAmount <=0)
+        {
+            spawnerType2 = true;
+        }
+        else if (platformAmount > breakPadAmount && breakPadAmount > 0 && movingBreakPadAmount <= 0)
+        {
+            spawnerType3 = true;
+        }
+        else if (platformAmount > movingBreakPadAmount && movingBreakPadAmount > 0 && breakPadAmount <= 0)
+        {
+            spawnerType4 = true;
+        }
+        else if (platformAmount > movingBreakPadAmount + breakPadAmount && movingBreakPadAmount > 0 &&
+                 breakPadAmount > 0)
+        {
+            spawnerType5 = true;
+        }
     }
 }
