@@ -37,9 +37,9 @@
         <option value="$PROJECT_DIR$/Assets/MovingBreakPad.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BreakPad.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlatformMoveHandler.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PlatformSpawner.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MovingBreakPad.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlatformSpawner.cs" />
       </list>
     </option>
   </component>
