@@ -12,6 +12,7 @@ public class PlatformMoveHandler : MonoBehaviour
     public bool isPlayerExactlyOnThisPlatform;
 
     Renderer platformRenderer;
+    Renderer childRenderer;
 
     public float moveSpeed;
     // Start is called before the first frame update
@@ -19,6 +20,8 @@ public class PlatformMoveHandler : MonoBehaviour
     {
         player = GameObject.Find("Player");
         platformRenderer = GetComponent<Renderer>();
+        childRenderer = GetComponentInChildren<Renderer>();
+        childRenderer.enabled = false;
         initialPos = transform.position;
         
         if (transform.position.x < 0)
@@ -108,10 +111,12 @@ public class PlatformMoveHandler : MonoBehaviour
         if (transform.position.z-player.transform.position.z>visibilityDistance)
         {
             platformRenderer.enabled = false;
+            transform.Find("Cube").GetComponent<Renderer>().enabled = false;
         }
-        else 
+        else
         {
             platformRenderer.enabled = true;
+            transform.Find("Cube").GetComponent<Renderer>().enabled = true;
         }
 
         if (transform.position.z - player.transform.position.z <= Mathf.Epsilon)
@@ -119,8 +124,9 @@ public class PlatformMoveHandler : MonoBehaviour
             isPlayerOnPlatform = true;
             
             if (!isPlayerExactlyOnThisPlatform)
-            {
-                platformRenderer.enabled = false;
+            { 
+                 platformRenderer.enabled = false;
+                 transform.Find("Cube").GetComponent<Renderer>().enabled = false;
             }
         }
         else

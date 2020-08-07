@@ -25,16 +25,20 @@ public class FinalPad : MonoBehaviour
     {
         if (transform.position.z-player.transform.position.z>visibilityDistance)
         {
+            GetComponentInChildren<Canvas>().enabled = false;
             foreach (Transform child in transform)
             {
-                child.GetComponent<Renderer>().enabled = false;
+                if(!child.CompareTag("FinalPadCanvas"))
+                {child.GetComponent<Renderer>().enabled = false;}
             }
         }
         else 
         { 
+            GetComponentInChildren<Canvas>().enabled = true;
             foreach (Transform child in transform)
             {
-                child.GetComponent<Renderer>().enabled = true;
+                if(!child.CompareTag("FinalPadCanvas"))
+                {child.GetComponent<Renderer>().enabled = true;}
             }
         }
        

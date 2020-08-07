@@ -260,7 +260,7 @@ public class PlatformSpawner : MonoBehaviour
                 platformsOfLevel[i].GetComponent<PlatformMoveHandler>().SetScaleX(PlatformScaleXRandomizer());
                 zPosDetecter += DistanceDetecter(platformsOfLevel[i]);
                 xPosDetecter *= -1;
-                if (tempa == 0)
+                if (tempa == 0 && breakPadIndex<breakPadsOfLevel.Length)
                 {
                     Instantiate(breakPadsOfLevel[breakPadIndex],
                         new Vector3(3 * xPosDetecter, 0, zPosDetecter + DistanceDetecter(breakPadsOfLevel[breakPadIndex])),

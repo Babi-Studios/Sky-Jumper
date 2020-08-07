@@ -11,6 +11,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/FinalPad.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ScreenWidthViolence.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/FollowPlayer.cs" root0="FORCE_HIGHLIGHTING" />
@@ -36,9 +37,10 @@
         <option value="$PROJECT_DIR$/Assets/FinalPad.cs" />
         <option value="$PROJECT_DIR$/Assets/MovingBreakPad.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BreakPad.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PlatformMoveHandler.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MovingBreakPad.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/FinalPad.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlatformMoveHandler.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlatformSpawner.cs" />
       </list>
     </option>

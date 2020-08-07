@@ -18,6 +18,8 @@ TagManager:
   - GreenMovingBreakPad
   - Obstacle
   - Moving Obstacle
+  - FinalPadCanvas
+  - childPlatform
   layers:
   - Default
   - TransparentFX
