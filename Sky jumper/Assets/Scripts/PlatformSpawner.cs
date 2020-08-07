@@ -20,16 +20,17 @@ public class PlatformSpawner : MonoBehaviour
     [SerializeField] int movingBreakPadAmount;
     [SerializeField] GameObject[] movingBreakPadPrefabs;
     public GameObject[] movingBreakPadsOfLevel;
-    [SerializeField] int obstacleAmount;
+  /*  [SerializeField] int obstacleAmount;
     [SerializeField] GameObject[] obstaclePrefabs;
     [SerializeField] int movingObstacleAmount;
-    [SerializeField] GameObject[] movingObstaclePrefabs;
+    [SerializeField] GameObject[] movingObstaclePrefabs;*/
 
     [SerializeField] float maxScaleX;
     [SerializeField] float minScaleX;
 
     [SerializeField] float maxSpeed;
     [SerializeField] float minSpeed;
+    
     
     [SerializeField] float maxPeriodOfMBP;
     [SerializeField] float minPeriodOfMBP;
@@ -290,7 +291,7 @@ public class PlatformSpawner : MonoBehaviour
                     xPosDetecter = 1;
                     tempa = 0;
                 }
-                if (tempa == 0 && platformIndex<platformsOfLevel.Length) // if in içindeki kısmı bütün spanwnlara ekleyelim
+                if (tempa == 0 && platformIndex<platformsOfLevel.Length)
                 {
                     Instantiate(platformsOfLevel[platformIndex],
                         new Vector3(10 * xPosDetecter, -10, zPosDetecter + DistanceDetecter(platformsOfLevel[platformIndex])),
@@ -330,37 +331,106 @@ public class PlatformSpawner : MonoBehaviour
 
         
     }
-    private void SpawnerType4Execute() // burda yapılacaklar var 
+    private void SpawnerType4Execute()  
     {
-        int zPosDetecter = 0;
-        int xPosDetecter = 1;
-        int tempa = Mathf.FloorToInt(platformAmount / movingBreakPadAmount);
-        int movingBreakPadIndex = 0;
-        for (int i = 0; i < platformsOfLevel.Length; i++)
+        if (platformAmount > movingBreakPadAmount)
         {
-            tempa--;
-            Instantiate(platformsOfLevel[i],
-                new Vector3(10 * xPosDetecter, -10, zPosDetecter + DistanceDetecter(platformsOfLevel[i])),
-                Quaternion.identity);
-            platformsOfLevel[i].GetComponent<PlatformMoveHandler>().SetMoveSpeed(PlatformSpeedRandomizer());
-            platformsOfLevel[i].GetComponent<PlatformMoveHandler>().SetScaleX(PlatformScaleXRandomizer());
-            zPosDetecter += DistanceDetecter(platformsOfLevel[i]);
-            xPosDetecter *= -1;
-            if (tempa == 0)
+            int zPosDetecter = 0;
+            int xPosDetecter = 1;
+            int tempa = Mathf.FloorToInt(platformAmount / movingBreakPadAmount);
+            int movingBreakPadIndex = 0;
+            for (int i = 0; i < platformsOfLevel.Length; i++)
             {
-                movingBreakPadsOfLevel[movingBreakPadIndex].GetComponent<MovingBreakPad>().SetPeriod(MBPPeriodRandomizer());
-                movingBreakPadsOfLevel[movingBreakPadIndex].GetComponent<MovingBreakPad>().SetMoveRange(MBPRangeRandomizer());
-                Instantiate(movingBreakPadsOfLevel[movingBreakPadIndex],
-                    new Vector3(3*xPosDetecter, 0, zPosDetecter + DistanceDetecter(movingBreakPadsOfLevel[movingBreakPadIndex])),
+                tempa--;
+                Instantiate(platformsOfLevel[i],
+                    new Vector3(10 * xPosDetecter, -10, zPosDetecter + DistanceDetecter(platformsOfLevel[i])),
                     Quaternion.identity);
-                zPosDetecter += DistanceDetecter(movingBreakPadsOfLevel[movingBreakPadIndex]);
-                movingBreakPadIndex++;
-                tempa=Mathf.FloorToInt(platformAmount / movingBreakPadAmount);
+                platformsOfLevel[i].GetComponent<PlatformMoveHandler>().SetMoveSpeed(PlatformSpeedRandomizer());
+                platformsOfLevel[i].GetComponent<PlatformMoveHandler>().SetScaleX(PlatformScaleXRandomizer());
+                zPosDetecter += DistanceDetecter(platformsOfLevel[i]);
+                xPosDetecter *= -1;
+                if (tempa == 0 && movingBreakPadIndex<movingBreakPadsOfLevel.Length)
+                {
+                    movingBreakPadsOfLevel[movingBreakPadIndex]
+                        .GetComponent<MovingBreakPad>().SetPeriod(MBPPeriodRandomizer());
+                    movingBreakPadsOfLevel[movingBreakPadIndex]
+                        .GetComponent<MovingBreakPad>().SetMoveRange(MBPRangeRandomizer());
+                    Instantiate(movingBreakPadsOfLevel[movingBreakPadIndex],
+                        new Vector3(3 * xPosDetecter, 0,
+                            zPosDetecter + DistanceDetecter(movingBreakPadsOfLevel[movingBreakPadIndex])),
+                        Quaternion.identity);
+                    zPosDetecter += DistanceDetecter(movingBreakPadsOfLevel[movingBreakPadIndex]);
+                    movingBreakPadIndex++;
+                    tempa = Mathf.FloorToInt(platformAmount / movingBreakPadAmount);
+                }
             }
-        }
 
-        finalPad = finalPadPrefabs[Randomizer(finalPadPrefabs)];
-        Instantiate(finalPad, new Vector3(0, 0, zPosDetecter + DistanceDetecter(finalPad)), Quaternion.identity);
+            finalPad = finalPadPrefabs[Randomizer(finalPadPrefabs)];
+            Instantiate(finalPad, new Vector3(0, 0, zPosDetecter + DistanceDetecter(finalPad)), Quaternion.identity);
+        }
+        else if (platformAmount < movingBreakPadAmount)
+        {
+            int zPosDetecter = 0;
+            int xPosDetecter = 0;
+            int tempa = Mathf.FloorToInt(movingBreakPadAmount / platformAmount);
+            int platformIndex = 0;
+            for (int i = 0; i < movingBreakPadsOfLevel.Length; i++)
+            {
+                tempa--;
+                movingBreakPadsOfLevel[i]
+                    .GetComponent<MovingBreakPad>().SetPeriod(MBPPeriodRandomizer());
+                movingBreakPadsOfLevel[i]
+                    .GetComponent<MovingBreakPad>().SetMoveRange(MBPRangeRandomizer());
+                Instantiate(movingBreakPadsOfLevel[i],
+                    new Vector3(3 * xPosDetecter, 0,
+                        zPosDetecter + DistanceDetecter(movingBreakPadsOfLevel[i])),
+                    Quaternion.identity);
+                zPosDetecter += DistanceDetecter(movingBreakPadsOfLevel[i]);
+                if (xPosDetecter == 0)
+                {
+                    xPosDetecter = 1;
+                }
+                if (tempa == 0 && platformIndex<platformsOfLevel.Length)
+                {
+                    Instantiate(platformsOfLevel[platformIndex],
+                        new Vector3(10 * xPosDetecter, -10, zPosDetecter + DistanceDetecter(platformsOfLevel[platformIndex])),
+                        Quaternion.identity);
+                    platformsOfLevel[platformIndex].GetComponent<PlatformMoveHandler>().SetMoveSpeed(PlatformSpeedRandomizer());
+                    platformsOfLevel[platformIndex].GetComponent<PlatformMoveHandler>().SetScaleX(PlatformScaleXRandomizer());
+                    zPosDetecter += DistanceDetecter(platformsOfLevel[platformIndex]);
+                    platformIndex++;
+                    tempa = Mathf.FloorToInt(movingBreakPadAmount / platformAmount);
+                    xPosDetecter *= -1;
+                }
+            }
+
+            finalPad = finalPadPrefabs[Randomizer(finalPadPrefabs)];
+            Instantiate(finalPad, new Vector3(0, 0, zPosDetecter + DistanceDetecter(finalPad)), Quaternion.identity);
+        }
+        else
+        {
+            int zPosDetecter = 0;
+            int xPosDetecter = 1;
+            for (int i = 0; i < platformsOfLevel.Length; i++)
+            {
+                Instantiate(platformsOfLevel[i], new Vector3(10 * xPosDetecter, -10,
+                    zPosDetecter + DistanceDetecter(platformsOfLevel[i])), Quaternion.identity);
+                platformsOfLevel[i].GetComponent<PlatformMoveHandler>().SetMoveSpeed(PlatformSpeedRandomizer());
+                platformsOfLevel[i].GetComponent<PlatformMoveHandler>().SetScaleX(PlatformScaleXRandomizer());
+                zPosDetecter += DistanceDetecter(platformsOfLevel[i]);
+                xPosDetecter *= -1;
+                movingBreakPadsOfLevel[i].GetComponent<MovingBreakPad>().SetPeriod(MBPPeriodRandomizer());
+                movingBreakPadsOfLevel[i].GetComponent<MovingBreakPad>().SetMoveRange(MBPRangeRandomizer());
+                Instantiate(movingBreakPadsOfLevel[i], new Vector3(3 * xPosDetecter, 0,
+                        zPosDetecter + DistanceDetecter(movingBreakPadsOfLevel[i])), Quaternion.identity);
+                zPosDetecter += DistanceDetecter(movingBreakPadsOfLevel[i]);
+               
+                
+            }
+
+            finalPad = finalPadPrefabs[Randomizer(finalPadPrefabs)];
+            Instantiate(finalPad, new Vector3(0, 0, zPosDetecter + DistanceDetecter(finalPad)), Quaternion.identity);
+        }
     }
     private void SpawnerType5Execute()
     {
