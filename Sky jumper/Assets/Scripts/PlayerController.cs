@@ -106,7 +106,7 @@ public class PlayerController : MonoBehaviour
             {
                 jumpSlider.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color = Color.gray;
                 enableForJumping = false;
-                SetParabolaRoots(1.25f, 2.30f);
+                SetParabolaRoots(0.5f, 1);
                 colorindex = 0;
             }
             else if (jumpSlider.value <= maxInputTime * (2 * grayFillAreaMultiplier + 2 * colorsFillAreaMultiplier) *
@@ -123,7 +123,7 @@ public class PlayerController : MonoBehaviour
             {
                 jumpSlider.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color = Color.gray;
                 enableForJumping = false;
-                SetParabolaRoots(1.5f, 3.30f);
+                SetParabolaRoots(0.5f, 1);
                 colorindex = 0;
             }
             else if (jumpSlider.value <= maxInputTime * (3 * grayFillAreaMultiplier + 3 * colorsFillAreaMultiplier) *
@@ -139,7 +139,7 @@ public class PlayerController : MonoBehaviour
             {
                 jumpSlider.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color = Color.gray;
                 enableForJumping = false;
-                SetParabolaRoots(2.25f, 4.30f);
+                SetParabolaRoots(0.5f, 1);
                 colorindex = 0;
             }
             else
@@ -147,7 +147,6 @@ public class PlayerController : MonoBehaviour
                 enableForJumping = false;
                 jumpSlider.fillRect.gameObject.SetActive(false);
                 SetParabolaRoots(0.5f, 1);
-                parabolaControllerScript.FollowParabola();
                 anim.SetBool("jumped", true);
                 colorindex = 0;
             }
@@ -176,7 +175,7 @@ private void SetParabolaRoots(float height, float forwardEndPoint)
 
 private void OnTriggerEnter(Collider other)
 {
-    if (other.gameObject.CompareTag("childPlatform"))
+    if (other.gameObject.CompareTag("childPlatform") || other.gameObject.CompareTag("childMBP"))
     {
         comboTime = true;
     }
@@ -238,8 +237,6 @@ private void OnCollisionEnter(Collision other)
             GameObject firework2 = Instantiate(fireworkParticle, new Vector3(transform.position.x-1,transform.position.y,transform.position.z), Quaternion.identity);
             firework.GetComponent<ParticleSystem>().Play();
             firework2.GetComponent<ParticleSystem>().Play();
-            
-            
         }
     }
 

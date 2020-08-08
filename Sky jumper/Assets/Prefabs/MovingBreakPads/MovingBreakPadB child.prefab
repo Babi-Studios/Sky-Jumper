@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8111983700722029338}
   m_Layer: 0
   m_Name: MovingBreakPadB child
-  m_TagString: childPlatform
+  m_TagString: childMBP
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

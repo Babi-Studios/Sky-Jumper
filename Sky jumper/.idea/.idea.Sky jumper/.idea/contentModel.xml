@@ -4,6 +4,7 @@
     <e p="C:\Users\bahad\AppData\Local\JetBrains\Rider2020.1\extResources" t="IncludeRecursive" />
     <e p="C:\Users\bahad\AppData\Local\JetBrains\Rider2020.1\resharper-host\Local\Transient\ReSharperHost\v201\SolutionCaches\_Sky jumper.-239466005.00" t="ExcludeRecursive" />
     <e p="C:\Users\bahad\Unity Games\Babi Studios\Sky-Jumper\Sky jumper" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="BizulkaProduction" t="Include">
@@ -11,19 +12,72 @@
             <e p="README.txt" t="Include" />
           </e>
         </e>
+        <e p="LeanTween" t="Include">
+          <e p="Editor" t="Include">
+            <e p="LeanTweenDocumentationEditor.cs" t="Include" />
+          </e>
+          <e p="Examples" t="Include">
+            <e p="Archived" t="Include">
+              <e p="2dUnlitWithFade.shader" t="Include" />
+              <e p="OldGUIExamplesCS.cs" t="Include" />
+              <e p="TestingPunch.cs" t="Include" />
+              <e p="TestingRigidbodyCS.cs" t="Include" />
+            </e>
+            <e p="Scripts" t="Include">
+              <e p="Following.cs" t="Include" />
+              <e p="GeneralAdvancedTechniques.cs" t="Include" />
+              <e p="GeneralBasic.cs" t="Include" />
+              <e p="GeneralBasics2d.cs" t="Include" />
+              <e p="GeneralCameraShake.cs" t="Include" />
+              <e p="GeneralEasingTypes.cs" t="Include" />
+              <e p="GeneralEventsListeners.cs" t="Include" />
+              <e p="GeneralSequencer.cs" t="Include" />
+              <e p="GeneralSimpleUI.cs" t="Include" />
+              <e p="GeneralUISpace.cs" t="Include" />
+              <e p="LogoCinematic.cs" t="Include" />
+              <e p="PathBezier.cs" t="Include" />
+              <e p="PathBezier2d.cs" t="Include" />
+              <e p="PathSpline.cs" t="Include" />
+              <e p="PathSpline2d.cs" t="Include" />
+              <e p="PathSplineEndless.cs" t="Include" />
+              <e p="PathSplinePerformance.cs" t="Include" />
+              <e p="PathSplines.cs" t="Include" />
+              <e p="PathSplineTrack.cs" t="Include" />
+              <e p="TestingUnitTests.cs" t="Include" />
+              <e p="TestingZLegacy.cs" t="Include" />
+              <e p="TestingZLegacyExt.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Framework" t="Include">
+            <e p="LeanAudio.cs" t="Include" />
+            <e p="LeanSmooth.cs" t="Include" />
+            <e p="LeanTest.cs" t="Include" />
+            <e p="LeanTween.cs" t="Include" />
+            <e p="LeanTweenExt.cs" t="Include" />
+            <e p="LTDescr.cs" t="Include" />
+            <e p="LTDescrOptional.cs" t="Include" />
+            <e p="LTSeq.cs" t="Include" />
+          </e>
+          <e p="License.txt" t="Include" />
+          <e p="README.txt" t="Include" />
+        </e>
         <e p="Scripts" t="Include">
           <e p="BreakPad.cs" t="Include" />
           <e p="FinalPad.cs" t="Include" />
           <e p="FollowPlayer.cs" t="Include" />
+          <e p="InterstitialScreenManager.cs" t="Include" />
           <e p="MathParabola.cs" t="Include" />
           <e p="MovingBreakPad.cs" t="Include" />
+          <e p="NextSceneLoader.cs" t="Include" />
           <e p="OnFalling.cs" t="Include" />
           <e p="ParabolaController.cs" t="Include" />
           <e p="PlatformMoveHandler.cs" t="Include" />
           <e p="PlatformSpawner.cs" t="Include" />
           <e p="PlayerController.cs" t="Include" />
           <e p="SceneRestarter.cs" t="Include" />
+          <e p="ScoreManager.cs" t="Include" />
           <e p="ScreenWidthViolence.cs" t="Include" />
+          <e p="Tutorial.cs" t="Include" />
         </e>
         <e p="SimpleFX" t="Include">
           <e p="Materials" t="Include">

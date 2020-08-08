@@ -20,6 +20,14 @@ TagManager:
   - Moving Obstacle
   - FinalPadCanvas
   - childPlatform
+  - childMBP
+  - Times1
+  - Times2
+  - Times3
+  - Times4
+  - Times5
+  - Times6
+  - Times7
   layers:
   - Default
   - TransparentFX

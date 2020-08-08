@@ -12,16 +12,21 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/FinalPad.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ScreenWidthViolence.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/FollowPlayer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../Game Factory/First Lectures/Side Scroller/Side Scroller Project/Assets/Scripts/ScoreManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/BreakPad.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/OnFalling.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/MovingBreakPad.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlatformSpawner.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../Game Factory/First Lectures/Side Scroller/Side Scroller Project/Assets/Scripts/Oscillator.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlatformMoveHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/InterstitialScreenManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/SceneRestarter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/OnFalling.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlatformSpawner.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ScoreManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ParabolaController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/NextSceneLoader.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -39,9 +44,15 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/BreakPad.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MovingBreakPad.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/FinalPad.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlatformMoveHandler.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlatformSpawner.cs" />
+        <option value="$PROJECT_DIR$/Assets/ScoreManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Tutorial.cs" />
+        <option value="$PROJECT_DIR$/Assets/InterstitialScreenManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/NextSceneLoader.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ScoreManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/InterstitialScreenManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" />
       </list>
     </option>
   </component>
