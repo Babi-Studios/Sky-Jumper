@@ -7,7 +7,7 @@ public class Tutorial : MonoBehaviour
 {
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) ||Input.GetMouseButtonDown(0))
         {
             Destroy(gameObject);
         }

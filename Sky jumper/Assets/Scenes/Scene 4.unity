@@ -342,13 +342,12 @@ MonoBehaviour:
   platformsOfLevel: []
   finalPadPrefabs:
   - {fileID: 5626971934500350684, guid: 24b43a17a5034a5498c14873dd3f8aec, type: 3}
-  - {fileID: 5626971934500350684, guid: cbf3652c00202774c8aea92972b01439, type: 3}
   - {fileID: 5626971934500350684, guid: 852bc838f9659bc42b0a637263e88fd5, type: 3}
-  breakPadAmount: 5
+  - {fileID: 5626971934500350684, guid: cbf3652c00202774c8aea92972b01439, type: 3}
+  breakPadAmount: 7
   breakPadPrefabs:
   - {fileID: 5626971934500350684, guid: ad358509a335b184091e364dd844b459, type: 3}
   - {fileID: 5626971934500350684, guid: 41c3c314f534114479cf27bcf0e7dee9, type: 3}
-  - {fileID: 5626971934500350684, guid: 3db6e2f35e3bf02438195f64014dc652, type: 3}
   breakPadsOfLevel: []
   movingBreakPadAmount: 0
   movingBreakPadPrefabs:
@@ -1814,7 +1813,7 @@ GameObject:
   - component: {fileID: 1956792487}
   - component: {fileID: 1956792486}
   m_Layer: 5
-  m_Name: Combo Text (1)
+  m_Name: Tutorial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

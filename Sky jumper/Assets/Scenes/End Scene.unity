@@ -296,7 +296,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1463168813}
-        m_MethodName: LoadNextScene
+        m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -478,7 +478,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: AWESOME!!!
+  m_Text: COMPLETED
 --- !u!222 &745266135
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -786,8 +786,6 @@ MonoBehaviour:
   totalScoreText: {fileID: 791716383}
   levelText: {fileID: 2131267263}
   levelScoreText: {fileID: 1495620264}
-  awesomeText: {fileID: 745266134}
-  nextButton: {fileID: 206303714}
 --- !u!4 &1463168814
 Transform:
   m_ObjectHideFlags: 0
@@ -1181,7 +1179,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Total score:'
+  m_Text: 'Final score:'
 --- !u!222 &1777208265
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1337,7 +1335,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: NEXT
+  m_Text: QUIT
 --- !u!222 &1974535411
 CanvasRenderer:
   m_ObjectHideFlags: 0

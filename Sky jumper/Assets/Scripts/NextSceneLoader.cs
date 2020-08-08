@@ -22,7 +22,14 @@ public class NextSceneLoader : MonoBehaviour
 
     private void LoadNextScene()
     {
-        SceneManager.LoadScene(1);
+        if (SceneManager.GetActiveScene().buildIndex == 30)
+        {
+            SceneManager.LoadScene(31);
+        }
+        else
+        {
+            SceneManager.LoadScene(32);
+        }
     }
 
    

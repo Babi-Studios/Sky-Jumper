@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
@@ -76,14 +77,14 @@ public class PlayerController : MonoBehaviour
 
     private void JumpHandler()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
         {
             jumpSlider.gameObject.SetActive(true);
             jumpSlider.fillRect.gameObject.SetActive(true);
             anim.SetBool("toIdle", false);
             anim.SetBool("readyForJump", true);
         }
-        else if (Input.GetKey(KeyCode.Space))
+        else if (Input.GetKey(KeyCode.Space)||Input.GetMouseButton(0))
         {
             jumpSlider.value += Time.deltaTime;
             if (jumpSlider.value <= maxInputTime * oneUnitForColorChange)
@@ -151,7 +152,7 @@ public class PlayerController : MonoBehaviour
                 colorindex = 0;
             }
         }
-        else if (Input.GetKeyUp(KeyCode.Space))
+        else if (Input.GetKeyUp(KeyCode.Space)||Input.GetMouseButtonUp(0))
         {
             ColorTeller(colorindex);
             anim.SetBool("readyForJump", false);
@@ -162,6 +163,11 @@ public class PlayerController : MonoBehaviour
             jumpSlider.value = 0;
             isOnPlatform = false;
             isOnMovingBreakPad = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 

@@ -20,8 +20,8 @@ public class ScoreManager : MonoBehaviour
 
     private void Awake()
     {
-        startScore = PlayerPrefs.GetInt(START_SCORE_KEY);
         currentScore = 0;
+        startScore = PlayerPrefs.GetInt(START_SCORE_KEY);
         UpdateScoreText();
     }
     
