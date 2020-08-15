@@ -44,5 +44,15 @@ public class InterstitialScreenManager : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void RestartWholeGame()
+    {
+        level = 0;
+        int startScore;
+        startScore = 0;
+        PlayerPrefs.SetInt(LEVEL_KEY, level);
+        PlayerPrefs.SetInt(START_SCORE_KEY, startScore);
+        SceneManager.LoadScene(level);
+    }
     
 }

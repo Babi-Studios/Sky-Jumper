@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,35 +12,38 @@ public class PlayerController : MonoBehaviour
     
     private int colorindex = 0;
     GameObject target;
-    public float offsetToMBP;
+    float offsetToMBP;
     
     public Animator anim;
 
     public GameObject fireworkParticle;
 
     public Slider jumpSlider;
+    private float jumpSliderMultiplier = 1;
 
     public GameObject[] parabolaRoots;
     private ParabolaController parabolaControllerScript;
 
     public float maxInputTime;
     
-    public bool enableForJumping;
+    private bool enableForJumping;
     
     private bool isOnPlatform = true;
     private bool isOnMovingBreakPad = false;
     private bool isOnFinalPad = false;
     private float moveXSpeed;
 
+    public float sliderDirectionChanger;
     public float grayFillAreaMultiplier;
-
     public float colorsFillAreaMultiplier;
     
     private float oneUnitForColorChange;
 
-    // Start is called before the first frame update
+   
     void Start()
     {
+        SetParabolaRoots(0.5f, 1);
+        
         comboText.GetComponent<Text>().enabled = false;
         parabolaControllerScript = GetComponent<ParabolaController>();
        
@@ -50,12 +52,12 @@ public class PlayerController : MonoBehaviour
         jumpSlider.fillRect.gameObject.SetActive(false);
         jumpSlider.gameObject.SetActive(false);
         anim = GetComponent<Animator>();
-        oneUnitForColorChange = 1 / (4 * grayFillAreaMultiplier + 3 * colorsFillAreaMultiplier);
+        oneUnitForColorChange = 1 / (2 * grayFillAreaMultiplier + 3 * colorsFillAreaMultiplier+2*sliderDirectionChanger);
     }
 
-    // Update is called once per frame
     void Update()
     {
+       
         if (isOnPlatform && !isOnFinalPad)
         {
             JumpHandler();
@@ -86,15 +88,25 @@ public class PlayerController : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.Space)||Input.GetMouseButton(0))
         {
-            jumpSlider.value += Time.deltaTime;
-            if (jumpSlider.value <= maxInputTime * oneUnitForColorChange)
+            jumpSlider.value += Time.deltaTime*jumpSliderMultiplier;
+            
+            if (jumpSlider.value <= maxInputTime * oneUnitForColorChange*sliderDirectionChanger)
+            {
+                jumpSlider.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color = Color.gray;
+                enableForJumping = false;
+                SetParabolaRoots(0.5f, 1);
+                colorindex = 0;
+                if(jumpSliderMultiplier==-1)
+                {jumpSliderMultiplier = 1;}
+            } 
+            else if (jumpSlider.value <= maxInputTime * (sliderDirectionChanger+grayFillAreaMultiplier)*oneUnitForColorChange)
             {
                 jumpSlider.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color = Color.gray;
                 enableForJumping = false;
                 SetParabolaRoots(0.5f, 1);
                 colorindex = 0;
             }
-            else if (jumpSlider.value <= maxInputTime * (grayFillAreaMultiplier + colorsFillAreaMultiplier) *
+            else if (jumpSlider.value <= maxInputTime * (sliderDirectionChanger+grayFillAreaMultiplier + colorsFillAreaMultiplier) *
                 oneUnitForColorChange)
             {
                 jumpSlider.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color = Color.red;
@@ -102,15 +114,7 @@ public class PlayerController : MonoBehaviour
                 SetParabolaRoots(1, 2);
                 colorindex = 1;
             }
-            else if (jumpSlider.value <= maxInputTime * (2 * grayFillAreaMultiplier + colorsFillAreaMultiplier) *
-                oneUnitForColorChange)
-            {
-                jumpSlider.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color = Color.gray;
-                enableForJumping = false;
-                SetParabolaRoots(0.5f, 1);
-                colorindex = 0;
-            }
-            else if (jumpSlider.value <= maxInputTime * (2 * grayFillAreaMultiplier + 2 * colorsFillAreaMultiplier) *
+            else if (jumpSlider.value <= maxInputTime * (sliderDirectionChanger+grayFillAreaMultiplier + 2 * colorsFillAreaMultiplier) *
                 oneUnitForColorChange)
             {
                 jumpSlider.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color =
@@ -119,15 +123,7 @@ public class PlayerController : MonoBehaviour
                 SetParabolaRoots(1.5f, 3);
                 colorindex = 2;
             }
-            else if (jumpSlider.value <= maxInputTime * (3 * grayFillAreaMultiplier + 2 * colorsFillAreaMultiplier) *
-                oneUnitForColorChange)
-            {
-                jumpSlider.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color = Color.gray;
-                enableForJumping = false;
-                SetParabolaRoots(0.5f, 1);
-                colorindex = 0;
-            }
-            else if (jumpSlider.value <= maxInputTime * (3 * grayFillAreaMultiplier + 3 * colorsFillAreaMultiplier) *
+            else if (jumpSlider.value <= maxInputTime * (sliderDirectionChanger+grayFillAreaMultiplier + 3 * colorsFillAreaMultiplier) *
                 oneUnitForColorChange)
             {
                 jumpSlider.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color = Color.blue;
@@ -135,26 +131,29 @@ public class PlayerController : MonoBehaviour
                 SetParabolaRoots(2, 4);
                 colorindex = 3;
             }
-            else if (jumpSlider.value - maxInputTime * (4 * grayFillAreaMultiplier + 3 * colorsFillAreaMultiplier) *
+            else if (jumpSlider.value <= maxInputTime * (sliderDirectionChanger+2*grayFillAreaMultiplier + 3 * colorsFillAreaMultiplier) *
+                oneUnitForColorChange)
+            {
+                jumpSlider.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color = Color.gray;
+                enableForJumping = false;
+                SetParabolaRoots(0.5f, 1);
+                colorindex = 0;
+                jumpSliderMultiplier *= -1;
+            }
+            else if(jumpSlider.value - maxInputTime * (2*sliderDirectionChanger+2 * grayFillAreaMultiplier + 3 * colorsFillAreaMultiplier) *
                 oneUnitForColorChange <= Mathf.Epsilon)
             {
                 jumpSlider.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color = Color.gray;
                 enableForJumping = false;
                 SetParabolaRoots(0.5f, 1);
                 colorindex = 0;
-            }
-            else
-            {
-                enableForJumping = false;
-                jumpSlider.fillRect.gameObject.SetActive(false);
-                SetParabolaRoots(0.5f, 1);
-                anim.SetBool("jumped", true);
-                colorindex = 0;
+                jumpSliderMultiplier = -1;
+                
             }
         }
         else if (Input.GetKeyUp(KeyCode.Space)||Input.GetMouseButtonUp(0))
         {
-            ColorTeller(colorindex);
+            //ColorTeller(colorindex);
             anim.SetBool("readyForJump", false);
             anim.SetBool("jumped", true);
             parabolaControllerScript.FollowParabola();
@@ -164,25 +163,28 @@ public class PlayerController : MonoBehaviour
             isOnPlatform = false;
             isOnMovingBreakPad = false;
         }
-
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        }
     }
 
 
 private void SetParabolaRoots(float height, float forwardEndPoint)
     {
         parabolaRoots[1].transform.localPosition=new Vector3(0,height,forwardEndPoint*0.6f);
-        parabolaRoots[2].transform.localPosition=new Vector3(0,0,forwardEndPoint);
+        parabolaRoots[2].transform.localPosition=new Vector3(0,0.14f,forwardEndPoint);
     }
-
 
 private void OnTriggerEnter(Collider other)
 {
     if (other.gameObject.CompareTag("childPlatform") || other.gameObject.CompareTag("childMBP"))
     {
+        string[] comboTexts= new string[5];
+        comboTexts[0] = "Nice Jump";
+        comboTexts[1] = "Yes, One More!";
+        comboTexts[2] = "Keep Going!";
+        comboTexts[3] = "Good Timing!";
+        comboTexts[4] = "Here, You Go!";
+        int textRandomizer = Random.Range(0, comboTexts.Length);
+        string selectedComboText = comboTexts[textRandomizer];
+        comboText.GetComponent<Text>().text = selectedComboText;
         comboTime = true;
     }
 }
@@ -243,6 +245,11 @@ private void OnCollisionEnter(Collision other)
             GameObject firework2 = Instantiate(fireworkParticle, new Vector3(transform.position.x-1,transform.position.y,transform.position.z), Quaternion.identity);
             firework.GetComponent<ParticleSystem>().Play();
             firework2.GetComponent<ParticleSystem>().Play();
+            
+            CollectableHandler collectableHandler = FindObjectOfType<CollectableHandler>();
+            collectableHandler.GetComponent<CollectableHandler>().AllignCollectables();
+            
+            other.gameObject.GetComponent<FinalPad>().CreatePlaneForCollectables();
         }
     }
 
@@ -258,17 +265,12 @@ private void OnCollisionEnter(Collision other)
 
     public void FollowParabolaOnFalling()
     {
-        isOnPlatform = false;
-        SetParabolaRoots(0.5f,1);
+        //isOnPlatform = false;
+        SetParabolaRoots(0.5f,1f);
         parabolaControllerScript.FollowParabola();
     }
 
-    public void AddXPosOfPlayer(float offset)
-    {
-        transform.position += new Vector3(offset,0,0);
-    }
-
-    private void ColorTeller(int color)
+   /* private void ColorTeller(int color)
     {
         if (color == 1)
         {
@@ -286,13 +288,13 @@ private void OnCollisionEnter(Collision other)
         {
             Debug.Log("gray");
         }
-    }
+    }*/
 
     private void ComboRandomizer()
     {
         comboTimer += Time.deltaTime;
         comboText.GetComponent<Text>().enabled = true;
-        if (comboTimer >= 0.5f)
+        if (comboTimer >= 1f)
         {
             comboText.GetComponent<Text>().enabled = false;
             comboTimer = 0;

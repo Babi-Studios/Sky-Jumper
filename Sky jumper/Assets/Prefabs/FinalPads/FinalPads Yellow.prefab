@@ -85,6 +85,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 178c21b952b165945b9d013d5aa0b3f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectablePlane: {fileID: 6696414130203306480, guid: d56a391c24f5adf4aa1114108a6b1dcd,
+    type: 3}
   visibilityDistance: 2.5
 --- !u!1001 &213142142305135665
 PrefabInstance:

@@ -10,7 +10,12 @@ public class SceneRestarter : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            Invoke("Restarter",2f);
         }
+    }
+
+    private void Restarter()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

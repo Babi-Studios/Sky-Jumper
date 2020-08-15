@@ -14,9 +14,12 @@ public class MovingBreakPad : MonoBehaviour
 
     public float moveRange;
 
+    public float collectableCreatePerc;
+
     // Start is called before the first frame update
     void Start()
     {
+        CollectableOrObstacleDecider();
         player = GameObject.Find("Player");
         startingPos = transform.position;
     }
@@ -51,6 +54,34 @@ public class MovingBreakPad : MonoBehaviour
                 child.GetComponent<Renderer>().enabled = false;
             }
         }
+    }
+    private void CollectableOrObstacleDecider()
+    {
+
+        if (transform.Find("Obstacle") != null && transform.Find("Collectable") != null)
+        {
+            int a = Random.Range(0, 101);
+            if (a < collectableCreatePerc)
+            {
+                if (transform.Find("Obstacle") != null)
+                {
+                    Destroy(transform.Find("Obstacle").gameObject);
+                }
+            }
+            else
+            {
+                if (transform.Find("Collectable") != null)
+                {
+                    Destroy(transform.Find("Collectable").gameObject);
+                }
+            }
+        }
+    }
+
+    
+    public void SetCollectableCreatePercentage(float perc)
+    {
+        collectableCreatePerc = perc;
     }
 
     private void PlayerPositionFollower()

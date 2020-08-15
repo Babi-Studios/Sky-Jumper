@@ -5,6 +5,8 @@ using UnityEngine;
 public class FinalPad : MonoBehaviour
 {
     GameObject player;
+
+    [SerializeField] GameObject collectablePlane;
     
     public float visibilityDistance = 4.5f;
     
@@ -42,5 +44,10 @@ public class FinalPad : MonoBehaviour
             }
         }
        
+    }
+
+    public void CreatePlaneForCollectables()
+    {
+        Instantiate(collectablePlane, new Vector3(0,0 , transform.position.z+17), Quaternion.identity);
     }
 }

@@ -12,6 +12,13 @@
             <e p="README.txt" t="Include" />
           </e>
         </e>
+        <e p="BreakPadCollectable.cs" t="Include" />
+        <e p="BreakPadObstacle.cs" t="Include" />
+        <e p="Fonts" t="Include">
+          <e p="Jupiter" t="Include">
+            <e p="License.txt" t="Include" />
+          </e>
+        </e>
         <e p="LeanTween" t="Include">
           <e p="Editor" t="Include">
             <e p="LeanTweenDocumentationEditor.cs" t="Include" />
@@ -61,28 +68,60 @@
           <e p="License.txt" t="Include" />
           <e p="README.txt" t="Include" />
         </e>
+        <e p="Materials" t="Include">
+          <e p="UI-Default-No-Alpha.shader" t="Include" />
+        </e>
         <e p="Scripts" t="Include">
+          <e p="ActiveStateToggler.cs" t="Include" />
+          <e p="ApplicationManager.cs" t="Include" />
           <e p="BreakPad.cs" t="Include" />
+          <e p="ChangeColor.cs" t="Include" />
+          <e p="Collectable.cs" t="Include" />
+          <e p="CollectableHandler.cs" t="Include" />
+          <e p="DragMe.cs" t="Include" />
+          <e p="DragPanel.cs" t="Include" />
+          <e p="DropMe.cs" t="Include" />
           <e p="FinalPad.cs" t="Include" />
           <e p="FollowPlayer.cs" t="Include" />
           <e p="InterstitialScreenManager.cs" t="Include" />
           <e p="MathParabola.cs" t="Include" />
           <e p="MovingBreakPad.cs" t="Include" />
+          <e p="NextLevelManager.cs" t="Include" />
           <e p="NextSceneLoader.cs" t="Include" />
+          <e p="Obstacle.cs" t="Include" />
           <e p="OnFalling.cs" t="Include" />
+          <e p="PanelManager.cs" t="Include" />
           <e p="ParabolaController.cs" t="Include" />
           <e p="PlatformMoveHandler.cs" t="Include" />
           <e p="PlatformSpawner.cs" t="Include" />
           <e p="PlayerController.cs" t="Include" />
+          <e p="ResizePanel.cs" t="Include" />
           <e p="SceneRestarter.cs" t="Include" />
           <e p="ScoreManager.cs" t="Include" />
           <e p="ScreenWidthViolence.cs" t="Include" />
+          <e p="ScrollDetailTexture.cs" t="Include" />
+          <e p="ShowSliderValue.cs" t="Include" />
           <e p="StartSceneManager.cs" t="Include" />
+          <e p="TiltWindow.cs" t="Include" />
           <e p="Tutorial.cs" t="Include" />
         </e>
+        <e p="ShelfCollectable.cs" t="Include" />
         <e p="SimpleFX" t="Include">
           <e p="Materials" t="Include">
             <e p="UnlitVertexColour_Alpha.shader" t="Include" />
+          </e>
+        </e>
+        <e p="SimpleLowPolyNature" t="Include">
+          <e p="README.txt" t="Include" />
+          <e p="Shaders" t="Include">
+            <e p="SimpleWater.shader" t="Include" />
+          </e>
+        </e>
+        <e p="Textures and Sprites" t="Include">
+          <e p="SF UI" t="Include">
+            <e p="Background" t="Include">
+              <e p="License.txt" t="Include" />
+            </e>
           </e>
         </e>
       </e>

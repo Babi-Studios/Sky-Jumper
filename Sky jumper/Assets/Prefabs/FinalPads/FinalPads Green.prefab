@@ -85,6 +85,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 178c21b952b165945b9d013d5aa0b3f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectablePlane: {fileID: 6696414130203306480, guid: d56a391c24f5adf4aa1114108a6b1dcd,
+    type: 3}
   visibilityDistance: 3.5
 --- !u!1001 &137178485917819535
 PrefabInstance:
@@ -543,6 +545,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5626971934500350685}
     m_Modifications:
+    - target: {fileID: 1472246961187326798, guid: ec1ec850729d13448b295e1dc85c71c6,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1595430150305959342, guid: ec1ec850729d13448b295e1dc85c71c6,
         type: 3}
       propertyPath: m_LocalPosition.x

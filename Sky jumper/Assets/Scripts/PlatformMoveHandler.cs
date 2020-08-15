@@ -15,9 +15,13 @@ public class PlatformMoveHandler : MonoBehaviour
     Renderer childRenderer;
 
     public float moveSpeed;
+
+    public float collectableCreatePerc;
     // Start is called before the first frame update
     void Start()
     {
+        CollectableOrObstacleDecider();
+        
         player = GameObject.Find("Player");
         platformRenderer = GetComponent<Renderer>();
         childRenderer = GetComponentInChildren<Renderer>();
@@ -43,6 +47,29 @@ public class PlatformMoveHandler : MonoBehaviour
         SpeedHandler();
         
         GameObjectDestoyer();
+    }
+    
+    private void CollectableOrObstacleDecider()
+    {
+
+        if (transform.Find("Obstacle") != null && transform.Find("Collectable") != null)
+        {
+            int a = Random.Range(0, 101);
+            if (a < collectableCreatePerc)
+            {
+                if (transform.Find("Obstacle") != null)
+                {
+                    Destroy(transform.Find("Obstacle").gameObject);
+                }
+            }
+            else
+            {
+                if (transform.Find("Collectable") != null)
+                {
+                    Destroy(transform.Find("Collectable").gameObject);
+                }
+            }
+        }
     }
 
     public void SetMoveSpeed(float platformSpeed)
@@ -95,12 +122,17 @@ public class PlatformMoveHandler : MonoBehaviour
             }
             else
             {
-                transform.Translate(Vector3.right * Time.deltaTime * moveSpeed);
+               transform.Translate(Vector3.right * Time.deltaTime * moveSpeed);
             }
             
         }
     }
 
+    public void SetCollectableCreatePercentage(float perc)
+    {
+        collectableCreatePerc = perc;
+    }
+    
     private void PlayerPositionFollower()
     {
         if (transform.position.z - player.transform.position.z < -0.5)
@@ -112,11 +144,28 @@ public class PlatformMoveHandler : MonoBehaviour
         {
             platformRenderer.enabled = false;
             transform.Find("Cube").GetComponent<Renderer>().enabled = false;
+            if (transform.Find("Collectable") != null)
+            {
+                transform.Find("Collectable").GetComponent<MeshRenderer>().enabled = false;
+            }
+
+            if (transform.Find("Obstacle") != null)
+            {
+                transform.Find("Obstacle").GetComponent<MeshRenderer>().enabled = false;
+            }
         }
         else
         {
             platformRenderer.enabled = true;
             transform.Find("Cube").GetComponent<Renderer>().enabled = true;
+            if (transform.Find("Collectable") != null)
+            {
+                transform.Find("Collectable").GetComponent<MeshRenderer>().enabled = true;
+            } 
+            if (transform.Find("Obstacle") != null)
+            {
+                transform.Find("Obstacle").GetComponent<MeshRenderer>().enabled = true;
+            }// bunları eger null degılse diye değiştir.
         }
 
         if (transform.position.z - player.transform.position.z <= Mathf.Epsilon)
@@ -127,6 +176,14 @@ public class PlatformMoveHandler : MonoBehaviour
             { 
                  platformRenderer.enabled = false;
                  transform.Find("Cube").GetComponent<Renderer>().enabled = false;
+                 if (transform.Find("Collectable") != null)
+                 {
+                     transform.Find("Collectable").GetComponent<MeshRenderer>().enabled = false;
+                 }
+                 if (transform.Find("Obstacle") != null)
+                 {
+                     transform.Find("Obstacle").GetComponent<MeshRenderer>().enabled = false;
+                 }
             }
         }
         else

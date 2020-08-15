@@ -37,6 +37,18 @@ public class PlatformSpawner : MonoBehaviour
     [SerializeField] float maxMoveRangeOfMBP;
     [SerializeField] float minMoveRangeOfMBP;
 
+    [SerializeField] float maxPeriodOfCollectable;
+    [SerializeField] float minPeriodOfCollectable;
+    [SerializeField] float maxMoveRangeOfCollectable;
+    [SerializeField] float minMoveRangeOfCollectable;
+    
+    [SerializeField] float maxPeriodOfObstacle;
+    [SerializeField] float minPeriodOfObstacle;
+    [SerializeField] float maxMoveRangeOfObstacle;
+    [SerializeField] float minMoveRangeOfObstacle;
+
+    [SerializeField] float collectableCreatePercentage;
+
     private void Start()
     {
         SpawnerTypeDecider();
@@ -106,6 +118,12 @@ public class PlatformSpawner : MonoBehaviour
             int zPosDetecter = 0;
             for (int i = 0; i < breakPadsOfLevel.Length; i++)
             {
+                breakPadsOfLevel[i].GetComponent<BreakPad>().SetCollectablePeriod(CollectablePeriodRandomizer());
+                breakPadsOfLevel[i].GetComponent<BreakPad>().SetCollectableRange(CollectableRangeRandomizer());
+                breakPadsOfLevel[i].GetComponent<BreakPad>().SetObstaclePeriod(ObstaclePeriodRandomizer());
+                breakPadsOfLevel[i].GetComponent<BreakPad>().SetObstacleRange(ObstacleRangeRandomizer());
+                breakPadsOfLevel[i].GetComponent<BreakPad>().SetCollectableCreatePercentage(collectableCreatePercentage);
+                
                 Instantiate(breakPadsOfLevel[i],
                     new Vector3(0, 0, zPosDetecter + DistanceDetecter(breakPadsOfLevel[i])),
                     Quaternion.identity);
@@ -124,6 +142,8 @@ public class PlatformSpawner : MonoBehaviour
                     .GetComponent<MovingBreakPad>().SetPeriod(MBPPeriodRandomizer());
                 movingBreakPadsOfLevel[i]
                     .GetComponent<MovingBreakPad>().SetMoveRange(MBPRangeRandomizer());
+                movingBreakPadsOfLevel[i]
+                    .GetComponent<MovingBreakPad>().SetCollectableCreatePercentage(collectableCreatePercentage);
                 Instantiate(movingBreakPadsOfLevel[i],
                     new Vector3(0, 0, zPosDetecter + DistanceDetecter(movingBreakPadsOfLevel[i])),
                     Quaternion.identity);
@@ -144,6 +164,7 @@ public class PlatformSpawner : MonoBehaviour
                     Quaternion.identity);
                 platformsOfLevel[i].GetComponent<PlatformMoveHandler>().SetMoveSpeed(PlatformSpeedRandomizer());
                 platformsOfLevel[i].GetComponent<PlatformMoveHandler>().SetScaleX(PlatformScaleXRandomizer());
+                platformsOfLevel[i].GetComponent<PlatformMoveHandler>().SetCollectableCreatePercentage(collectableCreatePercentage);
                 zPosDetecter += DistanceDetecter(platformsOfLevel[i]);
                 xPosDetecter *= -1;
             }
@@ -162,7 +183,12 @@ public class PlatformSpawner : MonoBehaviour
             for (int i = 0; i < breakPadsOfLevel.Length; i++)
             {
                 tempa--;
-                
+                breakPadsOfLevel[i].GetComponent<BreakPad>().SetCollectablePeriod(CollectablePeriodRandomizer());
+                breakPadsOfLevel[i].GetComponent<BreakPad>().SetCollectableRange(CollectableRangeRandomizer());
+                breakPadsOfLevel[i].GetComponent<BreakPad>().SetObstaclePeriod(ObstaclePeriodRandomizer());
+                breakPadsOfLevel[i].GetComponent<BreakPad>().SetObstacleRange(ObstacleRangeRandomizer());
+                breakPadsOfLevel[i].GetComponent<BreakPad>()
+                                   .SetCollectableCreatePercentage(collectableCreatePercentage);
                 Instantiate(breakPadsOfLevel[i],
                     new Vector3(0, 0, zPosDetecter + DistanceDetecter(breakPadsOfLevel[i])),
                     Quaternion.identity);
@@ -173,6 +199,8 @@ public class PlatformSpawner : MonoBehaviour
                         .GetComponent<MovingBreakPad>().SetPeriod(MBPPeriodRandomizer());
                     movingBreakPadsOfLevel[movingBreakPadIndex]
                         .GetComponent<MovingBreakPad>().SetMoveRange(MBPRangeRandomizer());
+                    movingBreakPadsOfLevel[movingBreakPadIndex]
+                        .GetComponent<MovingBreakPad>().SetCollectableCreatePercentage(collectableCreatePercentage);
                     Instantiate(movingBreakPadsOfLevel[movingBreakPadIndex],
                         new Vector3(0, 0, zPosDetecter + DistanceDetecter(movingBreakPadsOfLevel[movingBreakPadIndex])),
                         Quaternion.identity);
@@ -199,12 +227,20 @@ public class PlatformSpawner : MonoBehaviour
                     .GetComponent<MovingBreakPad>().SetPeriod(MBPPeriodRandomizer());
                 movingBreakPadsOfLevel[i]
                     .GetComponent<MovingBreakPad>().SetMoveRange(MBPRangeRandomizer());
+                movingBreakPadsOfLevel[i]
+                    .GetComponent<MovingBreakPad>().SetCollectableCreatePercentage(collectableCreatePercentage);
                 Instantiate(movingBreakPadsOfLevel[i],
                     new Vector3(0, 0, zPosDetecter + DistanceDetecter(movingBreakPadsOfLevel[i])),
                     Quaternion.identity);
                 zPosDetecter += DistanceDetecter(movingBreakPadsOfLevel[i]);
                 if (tempa == 0 && breakPadIndex<breakPadsOfLevel.Length)
                 {
+                    breakPadsOfLevel[breakPadIndex].GetComponent<BreakPad>().SetCollectablePeriod(CollectablePeriodRandomizer());
+                    breakPadsOfLevel[breakPadIndex].GetComponent<BreakPad>().SetCollectableRange(CollectableRangeRandomizer());
+                    breakPadsOfLevel[breakPadIndex].GetComponent<BreakPad>().SetObstaclePeriod(ObstaclePeriodRandomizer());
+                    breakPadsOfLevel[breakPadIndex].GetComponent<BreakPad>().SetObstacleRange(ObstacleRangeRandomizer());
+                    breakPadsOfLevel[breakPadIndex].GetComponent<BreakPad>()
+                                       .SetCollectableCreatePercentage(collectableCreatePercentage);
                     Instantiate(breakPadsOfLevel[breakPadIndex],
                         new Vector3(0, 0, zPosDetecter + DistanceDetecter(breakPadsOfLevel[breakPadIndex])),
                         Quaternion.identity);
@@ -230,7 +266,13 @@ public class PlatformSpawner : MonoBehaviour
                      new Vector3(0, 0, zPosDetecter + DistanceDetecter(movingBreakPadsOfLevel[i])),
                      Quaternion.identity);
                  zPosDetecter += DistanceDetecter(movingBreakPadsOfLevel[i]);
-
+    
+                 breakPadsOfLevel[i].GetComponent<BreakPad>().SetCollectablePeriod(CollectablePeriodRandomizer());
+                 breakPadsOfLevel[i].GetComponent<BreakPad>().SetCollectableRange(CollectableRangeRandomizer());
+                 breakPadsOfLevel[i].GetComponent<BreakPad>().SetObstaclePeriod(ObstaclePeriodRandomizer());
+                 breakPadsOfLevel[i].GetComponent<BreakPad>().SetObstacleRange(ObstacleRangeRandomizer());
+                 breakPadsOfLevel[i].GetComponent<BreakPad>()
+                                    .SetCollectableCreatePercentage(collectableCreatePercentage);
                  Instantiate(breakPadsOfLevel[i],
                      new Vector3(0, 0, zPosDetecter + DistanceDetecter(breakPadsOfLevel[i])),
                      Quaternion.identity);
@@ -258,10 +300,18 @@ public class PlatformSpawner : MonoBehaviour
                     Quaternion.identity);
                 platformsOfLevel[i].GetComponent<PlatformMoveHandler>().SetMoveSpeed(PlatformSpeedRandomizer());
                 platformsOfLevel[i].GetComponent<PlatformMoveHandler>().SetScaleX(PlatformScaleXRandomizer());
+                platformsOfLevel[i].GetComponent<PlatformMoveHandler>()
+                                   .SetCollectableCreatePercentage(collectableCreatePercentage);
                 zPosDetecter += DistanceDetecter(platformsOfLevel[i]);
                 xPosDetecter *= -1;
                 if (tempa == 0 && breakPadIndex<breakPadsOfLevel.Length)
                 {
+                    breakPadsOfLevel[breakPadIndex].GetComponent<BreakPad>().SetCollectablePeriod(CollectablePeriodRandomizer());
+                    breakPadsOfLevel[breakPadIndex].GetComponent<BreakPad>().SetCollectableRange(CollectableRangeRandomizer());
+                    breakPadsOfLevel[breakPadIndex].GetComponent<BreakPad>().SetObstaclePeriod(ObstaclePeriodRandomizer());
+                    breakPadsOfLevel[breakPadIndex].GetComponent<BreakPad>().SetObstacleRange(ObstacleRangeRandomizer());
+                    breakPadsOfLevel[breakPadIndex]
+                        .GetComponent<BreakPad>().SetCollectableCreatePercentage(collectableCreatePercentage);
                     Instantiate(breakPadsOfLevel[breakPadIndex],
                         new Vector3(3 * xPosDetecter, 0, zPosDetecter + DistanceDetecter(breakPadsOfLevel[breakPadIndex])),
                         Quaternion.identity);
@@ -282,6 +332,12 @@ public class PlatformSpawner : MonoBehaviour
             for (int i = 0; i < breakPadsOfLevel.Length; i++)
             {
                 tempa--;
+                breakPadsOfLevel[i].GetComponent<BreakPad>().SetCollectablePeriod(CollectablePeriodRandomizer());
+                breakPadsOfLevel[i].GetComponent<BreakPad>().SetCollectableRange(CollectableRangeRandomizer());
+                breakPadsOfLevel[i].GetComponent<BreakPad>().SetObstaclePeriod(ObstaclePeriodRandomizer());
+                breakPadsOfLevel[i].GetComponent<BreakPad>().SetObstacleRange(ObstacleRangeRandomizer());
+                breakPadsOfLevel[i].GetComponent<BreakPad>()
+                                   .SetCollectableCreatePercentage(collectableCreatePercentage);
                 Instantiate(breakPadsOfLevel[i],
                     new Vector3(3 * xPosDetecter, 0, zPosDetecter + DistanceDetecter(breakPadsOfLevel[i])),
                     Quaternion.identity);
@@ -298,6 +354,9 @@ public class PlatformSpawner : MonoBehaviour
                         Quaternion.identity);
                     platformsOfLevel[platformIndex].GetComponent<PlatformMoveHandler>().SetMoveSpeed(PlatformSpeedRandomizer());
                     platformsOfLevel[platformIndex].GetComponent<PlatformMoveHandler>().SetScaleX(PlatformScaleXRandomizer());
+                    platformsOfLevel[platformIndex]
+                        .GetComponent<PlatformMoveHandler>()
+                        .SetCollectableCreatePercentage(collectableCreatePercentage);
                     zPosDetecter += DistanceDetecter(platformsOfLevel[platformIndex]);
                     xPosDetecter *= -1;
                     tempa = Mathf.FloorToInt(breakPadAmount / platformAmount);
@@ -318,9 +377,16 @@ public class PlatformSpawner : MonoBehaviour
                     Quaternion.identity);
                 platformsOfLevel[i].GetComponent<PlatformMoveHandler>().SetMoveSpeed(PlatformSpeedRandomizer());
                 platformsOfLevel[i].GetComponent<PlatformMoveHandler>().SetScaleX(PlatformScaleXRandomizer());
+                platformsOfLevel[i].GetComponent<PlatformMoveHandler>()
+                                   .SetCollectableCreatePercentage(collectableCreatePercentage);
                 zPosDetecter += DistanceDetecter(platformsOfLevel[i]);
                 xPosDetecter *= -1;
-               
+                breakPadsOfLevel[i].GetComponent<BreakPad>().SetCollectablePeriod(CollectablePeriodRandomizer());
+                breakPadsOfLevel[i].GetComponent<BreakPad>().SetCollectableRange(CollectableRangeRandomizer());
+                breakPadsOfLevel[i].GetComponent<BreakPad>().SetObstaclePeriod(ObstaclePeriodRandomizer());
+                breakPadsOfLevel[i].GetComponent<BreakPad>().SetObstacleRange(ObstacleRangeRandomizer());
+                breakPadsOfLevel[i].GetComponent<BreakPad>()
+                                   .SetCollectableCreatePercentage(collectableCreatePercentage);
                 Instantiate(breakPadsOfLevel[i], new Vector3(3 * xPosDetecter, 0, zPosDetecter + DistanceDetecter(breakPadsOfLevel[i])),
                     Quaternion.identity);
                 zPosDetecter += DistanceDetecter(breakPadsOfLevel[i]); 
@@ -347,6 +413,8 @@ public class PlatformSpawner : MonoBehaviour
                     Quaternion.identity);
                 platformsOfLevel[i].GetComponent<PlatformMoveHandler>().SetMoveSpeed(PlatformSpeedRandomizer());
                 platformsOfLevel[i].GetComponent<PlatformMoveHandler>().SetScaleX(PlatformScaleXRandomizer());
+                platformsOfLevel[i].GetComponent<PlatformMoveHandler>()
+                                   .SetCollectableCreatePercentage(collectableCreatePercentage);
                 zPosDetecter += DistanceDetecter(platformsOfLevel[i]);
                 xPosDetecter *= -1;
                 if (tempa == 0 && movingBreakPadIndex<movingBreakPadsOfLevel.Length)
@@ -355,8 +423,10 @@ public class PlatformSpawner : MonoBehaviour
                         .GetComponent<MovingBreakPad>().SetPeriod(MBPPeriodRandomizer());
                     movingBreakPadsOfLevel[movingBreakPadIndex]
                         .GetComponent<MovingBreakPad>().SetMoveRange(MBPRangeRandomizer());
+                    movingBreakPadsOfLevel[movingBreakPadIndex]
+                        .GetComponent<MovingBreakPad>().SetCollectableCreatePercentage(collectableCreatePercentage);
                     Instantiate(movingBreakPadsOfLevel[movingBreakPadIndex],
-                        new Vector3(3 * xPosDetecter, 0,
+                        new Vector3(2 * xPosDetecter, 0,
                             zPosDetecter + DistanceDetecter(movingBreakPadsOfLevel[movingBreakPadIndex])),
                         Quaternion.identity);
                     zPosDetecter += DistanceDetecter(movingBreakPadsOfLevel[movingBreakPadIndex]);
@@ -381,8 +451,10 @@ public class PlatformSpawner : MonoBehaviour
                     .GetComponent<MovingBreakPad>().SetPeriod(MBPPeriodRandomizer());
                 movingBreakPadsOfLevel[i]
                     .GetComponent<MovingBreakPad>().SetMoveRange(MBPRangeRandomizer());
+                movingBreakPadsOfLevel[i]
+                    .GetComponent<MovingBreakPad>().SetCollectableCreatePercentage(collectableCreatePercentage);
                 Instantiate(movingBreakPadsOfLevel[i],
-                    new Vector3(3 * xPosDetecter, 0,
+                    new Vector3(2 * xPosDetecter, 0,
                         zPosDetecter + DistanceDetecter(movingBreakPadsOfLevel[i])),
                     Quaternion.identity);
                 zPosDetecter += DistanceDetecter(movingBreakPadsOfLevel[i]);
@@ -397,6 +469,8 @@ public class PlatformSpawner : MonoBehaviour
                         Quaternion.identity);
                     platformsOfLevel[platformIndex].GetComponent<PlatformMoveHandler>().SetMoveSpeed(PlatformSpeedRandomizer());
                     platformsOfLevel[platformIndex].GetComponent<PlatformMoveHandler>().SetScaleX(PlatformScaleXRandomizer());
+                    platformsOfLevel[platformIndex].GetComponent<PlatformMoveHandler>()
+                                       .SetCollectableCreatePercentage(collectableCreatePercentage);
                     zPosDetecter += DistanceDetecter(platformsOfLevel[platformIndex]);
                     platformIndex++;
                     tempa = Mathf.FloorToInt(movingBreakPadAmount / platformAmount);
@@ -417,11 +491,15 @@ public class PlatformSpawner : MonoBehaviour
                     zPosDetecter + DistanceDetecter(platformsOfLevel[i])), Quaternion.identity);
                 platformsOfLevel[i].GetComponent<PlatformMoveHandler>().SetMoveSpeed(PlatformSpeedRandomizer());
                 platformsOfLevel[i].GetComponent<PlatformMoveHandler>().SetScaleX(PlatformScaleXRandomizer());
+                platformsOfLevel[i].GetComponent<PlatformMoveHandler>()
+                                   .SetCollectableCreatePercentage(collectableCreatePercentage);
                 zPosDetecter += DistanceDetecter(platformsOfLevel[i]);
                 xPosDetecter *= -1;
                 movingBreakPadsOfLevel[i].GetComponent<MovingBreakPad>().SetPeriod(MBPPeriodRandomizer());
                 movingBreakPadsOfLevel[i].GetComponent<MovingBreakPad>().SetMoveRange(MBPRangeRandomizer());
-                Instantiate(movingBreakPadsOfLevel[i], new Vector3(3 * xPosDetecter, 0,
+                movingBreakPadsOfLevel[i]
+                    .GetComponent<MovingBreakPad>().SetCollectableCreatePercentage(collectableCreatePercentage);
+                Instantiate(movingBreakPadsOfLevel[i], new Vector3(2 * xPosDetecter, 0,
                         zPosDetecter + DistanceDetecter(movingBreakPadsOfLevel[i])), Quaternion.identity);
                 zPosDetecter += DistanceDetecter(movingBreakPadsOfLevel[i]);
                
@@ -434,7 +512,51 @@ public class PlatformSpawner : MonoBehaviour
     }
     private void SpawnerType5Execute()
     {
-       // do sth
+        int zPosDetecter = 0;
+        int xPosDetecter = 1;
+        for (int i = 0; i < movingBreakPadsOfLevel.Length; i++)
+        {
+            Instantiate(platformsOfLevel[i], new Vector3(10 * xPosDetecter, -10,
+                zPosDetecter + DistanceDetecter(platformsOfLevel[i])), Quaternion.identity);
+            platformsOfLevel[i].GetComponent<PlatformMoveHandler>().SetMoveSpeed(PlatformSpeedRandomizer());
+            platformsOfLevel[i].GetComponent<PlatformMoveHandler>().SetScaleX(PlatformScaleXRandomizer());
+            platformsOfLevel[i].GetComponent<PlatformMoveHandler>()
+                               .SetCollectableCreatePercentage(collectableCreatePercentage);
+            zPosDetecter += DistanceDetecter(platformsOfLevel[i]);
+            xPosDetecter *= -1;
+            
+            movingBreakPadsOfLevel[i].GetComponent<MovingBreakPad>().SetPeriod(MBPPeriodRandomizer());
+            movingBreakPadsOfLevel[i].GetComponent<MovingBreakPad>().SetMoveRange(MBPRangeRandomizer());
+            movingBreakPadsOfLevel[i]
+                .GetComponent<MovingBreakPad>().SetCollectableCreatePercentage(collectableCreatePercentage);
+            Instantiate(movingBreakPadsOfLevel[i], new Vector3(2 * xPosDetecter, 0,
+                zPosDetecter + DistanceDetecter(movingBreakPadsOfLevel[i])), Quaternion.identity);
+            zPosDetecter += DistanceDetecter(movingBreakPadsOfLevel[i]);
+            
+            breakPadsOfLevel[i].GetComponent<BreakPad>().SetCollectablePeriod(CollectablePeriodRandomizer());
+            breakPadsOfLevel[i].GetComponent<BreakPad>().SetCollectableRange(CollectableRangeRandomizer());
+            breakPadsOfLevel[i].GetComponent<BreakPad>().SetObstaclePeriod(ObstaclePeriodRandomizer());
+            breakPadsOfLevel[i].GetComponent<BreakPad>().SetObstacleRange(ObstacleRangeRandomizer());
+            breakPadsOfLevel[i].GetComponent<BreakPad>()
+                               .SetCollectableCreatePercentage(collectableCreatePercentage);
+            Instantiate(breakPadsOfLevel[i],
+                new Vector3(0, 0, zPosDetecter + DistanceDetecter(breakPadsOfLevel[i])),
+                Quaternion.identity);
+            zPosDetecter += DistanceDetecter(breakPadsOfLevel[i]);
+        
+                
+        }
+        
+        Instantiate(platformsOfLevel[platformsOfLevel.Length-1], new Vector3(10 * xPosDetecter, -10,
+            zPosDetecter + DistanceDetecter(platformsOfLevel[platformsOfLevel.Length-1])), Quaternion.identity);
+        platformsOfLevel[platformsOfLevel.Length-1].GetComponent<PlatformMoveHandler>().SetMoveSpeed(PlatformSpeedRandomizer());
+        platformsOfLevel[platformsOfLevel.Length-1].GetComponent<PlatformMoveHandler>().SetScaleX(PlatformScaleXRandomizer());
+        platformsOfLevel[platformsOfLevel.Length-1].GetComponent<PlatformMoveHandler>()
+                                                   .SetCollectableCreatePercentage(collectableCreatePercentage);
+        zPosDetecter += DistanceDetecter(platformsOfLevel[platformsOfLevel.Length-1]);
+
+        finalPad = finalPadPrefabs[Randomizer(finalPadPrefabs)];
+        Instantiate(finalPad, new Vector3(0, 0, zPosDetecter + DistanceDetecter(finalPad)), Quaternion.identity);
     }
     
     
@@ -472,21 +594,38 @@ public class PlatformSpawner : MonoBehaviour
     {
         return Random.Range(minSpeed, maxSpeed);
     }
-    
-    private float MBPPeriodRandomizer()
-    {
-        return Random.Range(minPeriodOfMBP, maxPeriodOfMBP);
-    }
-
     private float PlatformScaleXRandomizer()
     {
         return Random.Range(minScaleX, maxScaleX);
+    }
+    private float MBPPeriodRandomizer()
+    {
+        return Random.Range(minPeriodOfMBP, maxPeriodOfMBP);
     }
 
     private float MBPRangeRandomizer()
     {
         return Random.Range(minMoveRangeOfMBP, maxMoveRangeOfMBP);
     }
+    
+    private float CollectableRangeRandomizer()
+    {
+        return Random.Range(minMoveRangeOfCollectable, maxMoveRangeOfCollectable);
+    }
+    
+    private float ObstacleRangeRandomizer()
+    {
+        return Random.Range(minMoveRangeOfObstacle, maxMoveRangeOfObstacle);
+    }
+    private float CollectablePeriodRandomizer()
+    {
+        return Random.Range(minPeriodOfCollectable, maxPeriodOfCollectable);
+    }
+    private float ObstaclePeriodRandomizer()
+    {
+        return Random.Range(minPeriodOfObstacle, maxPeriodOfObstacle);
+    }
+    
 
     private void SpawnerTypeDecider()
     {
@@ -504,11 +643,11 @@ public class PlatformSpawner : MonoBehaviour
         {
             spawnerType3 = true;
         }
-        else if (platformAmount > 0 && movingBreakPadAmount > 0 && breakPadAmount <= 0) // eksik ne varsa yapalım
+        else if (platformAmount > 0 && movingBreakPadAmount > 0 && breakPadAmount <= 0)
         {
             spawnerType4 = true;
         }
-        else if (platformAmount > 0 && movingBreakPadAmount > 0 && breakPadAmount > 0)
+        else if (platformAmount > 0 && movingBreakPadAmount > 0 && breakPadAmount > 0 && breakPadAmount==platformAmount-1 && movingBreakPadAmount == platformAmount-1)
         {
             spawnerType5 = true;
         }

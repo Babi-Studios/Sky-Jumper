@@ -28,6 +28,7 @@ TagManager:
   - Times5
   - Times6
   - Times7
+  - Collectable
   layers:
   - Default
   - TransparentFX
